@@ -1,0 +1,10 @@
+{
+  "name": "questionnaire-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/questionnaire-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["questionnaire"],
+  "// targets": "to see all targets run: nx show project questionnaire-e2e --web",
+  "targets": {}
+}
