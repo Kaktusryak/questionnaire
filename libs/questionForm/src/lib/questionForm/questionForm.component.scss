@@ -1,0 +1,43 @@
+.form-container{
+    width: 45rem;
+    padding: 50px;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    border:1px solid black;
+    border-radius: 30px;
+    .form-control{
+        height: 35px;
+        width: 30rem;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 10px;
+        font-size: larger;
+    }
+    .form-radios{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: larger;
+
+    }
+    .form-button-div{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+        button{
+            background-color: deepskyblue;
+            color: white;
+            width: 10rem;
+            height: 3rem;
+            border: none;
+            border-radius: 30px;
+            font-size: large;
+            font-weight: 800;
+
+        }
+    }
+}

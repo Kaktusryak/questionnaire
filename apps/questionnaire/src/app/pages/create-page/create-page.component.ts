@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [QuestionCardListComponent, QuestionFormComponent,],
   templateUrl: './create-page.component.html',
-  styleUrl: './create-page.component.css'
+  styleUrl: './create-page.component.scss'
 })
 export class CreatePageComponent {
   title = 'questionnaire';

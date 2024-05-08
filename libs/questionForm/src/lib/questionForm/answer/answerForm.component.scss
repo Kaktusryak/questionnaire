@@ -1,0 +1,29 @@
+.answer-form {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 35rem;
+
+
+    .form-control {
+        height: 35px;
+        width: 20rem;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 10px;
+        font-size: larger;
+    }
+
+    button {
+        background-color: deepskyblue;
+        color: white;
+        width: 10rem;
+        height: 3rem;
+        border: none;
+        border-radius: 30px;
+        font-size: large;
+        font-weight: 800;
+
+    }
+
+}

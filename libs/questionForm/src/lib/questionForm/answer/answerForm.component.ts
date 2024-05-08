@@ -8,10 +8,10 @@ import { AnswerInterface } from '../models/question.model';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './answerForm.component.html',
-  styleUrl: './answerForm.component.css',
+  styleUrl: './answerForm.component.scss',
 })
 export class AnswerFormComponent {
-  @Input() text: string = '';
+  @Input() text!: string 
   @Input() id: string = Date.now().toString();
   @Input() correct: boolean = false;
   @Input() isChange: boolean = false;
@@ -22,11 +22,7 @@ export class AnswerFormComponent {
 
   buttonText = 'Add'
 
-  constructor(){
-    if(this.isChange){
-      this.buttonText = 'Change'
-    }
-  }
+  
 
   answerForm = this.fb.group({
     text: [this.text, [Validators.required]],

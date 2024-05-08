@@ -14,7 +14,7 @@ import { AnswerFormComponent } from './answer/answerForm.component';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, AnswerFormComponent],
   templateUrl: './questionForm.component.html',
-  styleUrl: './questionForm.component.css',
+  styleUrl: './questionForm.component.scss',
 })
 export class QuestionFormComponent {
   @Input() text: string = '';
