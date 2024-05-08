@@ -29,8 +29,8 @@ export class AnswerFormComponent {
   }
 
   answerForm = this.fb.group({
-    text: ['', [Validators.required]],
-    correct: [false, Validators.required],
+    text: [this.text, [Validators.required]],
+    correct: [this.correct, Validators.required],
   });
 
   onAddAnswer() {

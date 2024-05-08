@@ -4,6 +4,7 @@ import { QuestionInterface } from 'libs/questionForm/src/lib/questionForm/models
 import { createQuestion } from '../../store/questions/questions.actions';
 import { QuestionCardListComponent } from '@angular-monorepo/questionCard';
 import { QuestionFormComponent } from '@angular-monorepo/questionForm';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-page',
@@ -15,6 +16,7 @@ import { QuestionFormComponent } from '@angular-monorepo/questionForm';
 export class CreatePageComponent {
   title = 'questionnaire';
   store = inject(Store)
+  router = inject(Router)
   
   
 
@@ -26,6 +28,7 @@ export class CreatePageComponent {
     console.log('Home:')
     console.log(question)
     this.store.dispatch(createQuestion({question:question}))
+    this.router.navigateByUrl('')
 
   }
 }
