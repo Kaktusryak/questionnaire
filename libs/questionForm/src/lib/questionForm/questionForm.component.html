@@ -1,0 +1,30 @@
+<p>questionForm works!</p>
+
+<form action="" [formGroup]="questionForm" (ngSubmit)="onAddQuestion()">
+    <input type="text" class="form-control" id="text" formControlName="text" placeholder="Question text" />
+    <div>
+        <input type="radio" name="typeControl" formControlName="typeControl" value="one" id="one"><label
+            for="one">One</label>
+        <input type="radio" name="typeControl" formControlName="typeControl" value="many" id="many"><label
+            for="one">Many</label>
+        <input type="radio" name="typeControl" formControlName="typeControl" value="open" id="open"><label
+            for="one">Open</label>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+
+<div *ngIf="questionForm.getRawValue().typeControl==='one'">
+    ONE
+</div>
+<div *ngIf="questionForm.getRawValue().typeControl==='many'">
+    MANY
+</div>
+<div *ngIf="questionForm.getRawValue().typeControl==='open'">
+    OPEN
+</div>
+
+<lib-answer-form (newItemEvent)="onAddAnswer($event)"></lib-answer-form>
+
+<lib-answer-form *ngFor="let answer of answers" (newItemEvent)="onChangeAnswer($event)" [text]="answer.text"
+    [id]="answer.id" [correct]="answer.correct" [isChange]="true"> </lib-answer-form>

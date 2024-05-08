@@ -1,0 +1,15 @@
+.card-container{
+    width: 500px;
+    min-height: 8rem;
+    height: fit-content;
+    margin-bottom: 1rem;
+    .card-content{
+        margin-top: 10px;
+        margin-bottom: 15px;
+        font-size: larger;
+    }
+    .card-footer{
+        text-align: center;
+    }
+    
+}

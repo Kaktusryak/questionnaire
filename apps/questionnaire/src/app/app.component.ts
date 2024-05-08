@@ -1,15 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+
+
 import { QuestionCardListComponent } from '@angular-monorepo/questionCard';
+import { QuestionFormComponent } from '@angular-monorepo/questionForm';
+
+import { QuestionInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model';
+import { Store } from '@ngrx/store';
+import { createQuestion } from './store/questions/questions.actions';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule, QuestionCardListComponent],
+  imports: [RouterModule, QuestionCardListComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'questionnaire';
+  OnInit() {}
 }

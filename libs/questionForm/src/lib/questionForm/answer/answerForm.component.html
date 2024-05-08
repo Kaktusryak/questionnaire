@@ -1,0 +1,9 @@
+<p>answerForm works!</p>
+
+
+
+<form action="" [formGroup]="answerForm" (ngSubmit)="onAddAnswer()">
+    <input [(ngModel)]="text" type="text" class="form-control" id="text" formControlName="text" placeholder="Answer text"/>
+    <input [(ngModel)]="correct" type="checkbox" class="form-control" id="correct" formControlName="correct"/>
+    <button type="submit"> {{buttonText}}</button>
+</form>

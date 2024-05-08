@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@angular-monorepo/questionCard": ["libs/questionCard/src/index.ts"]
+      "@angular-monorepo/localStorage": ["libs/localStorage/src/index.ts"],
+      "@angular-monorepo/questionCard": ["libs/questionCard/src/index.ts"],
+      "@angular-monorepo/questionForm": ["libs/questionForm/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

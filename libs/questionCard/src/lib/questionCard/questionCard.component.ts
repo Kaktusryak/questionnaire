@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'lib-question-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatCardModule],
   templateUrl: './questionCard.component.html',
-  styleUrl: './questionCard.component.css',
+  styleUrl: './questionCard.component.scss',
 })
-export class QuestionCardComponent {}
+export class QuestionCardComponent {
+  @Input() text : string = '';
+  @Input() date : Date = new Date()
+  @Input() type : string = ''
+}

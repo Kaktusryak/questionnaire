@@ -1,8 +1,20 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter, withEnabledBlockingInitialNavigation } from '@angular/router';
+import {
+  provideRouter,
+  withEnabledBlockingInitialNavigation,
+} from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { metaReducers, reducers } from './store';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(appRoutes,withEnabledBlockingInitialNavigation()), provideAnimationsAsync()],
+  providers: [
+    provideEffects(),
+    provideStore(reducers,{metaReducers}),
+    provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
+    provideAnimationsAsync(),
+    
+  ],
 };
