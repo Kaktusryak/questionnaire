@@ -32,4 +32,16 @@ export class ListPageComponent {
   ngOnInit() {
     this.questions$ = this.store.pipe(select(selectQuestions));
   }
+
+  handleCheckOneAnswer(newAnswerId:string){
+    console.log('we are in list '+ newAnswerId)
+  }
+  handleCheckOpenAnswer(newAnswerText:string){
+    console.log('we are in list '+ newAnswerText)
+  }
+  handleCheckManyAnswers(newAnswersArray:{id:string,correct:boolean}[]){
+    console.log('we are in list ')
+    console.log(newAnswersArray)
+
+  }
 }

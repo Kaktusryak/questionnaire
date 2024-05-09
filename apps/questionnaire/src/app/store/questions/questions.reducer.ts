@@ -1,7 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { appState } from '../app.state';
 import {
-  answerQuestion,
+  
+  checkQuestionOneAnswer,
   createQuestion,
   deleteQuestion,
   editQuestion,
@@ -36,10 +37,16 @@ export const questionsReducer = createReducer(
       questions: filteredQuestions,
     };
   }),
-  on(answerQuestion, (state, { id }) => {
+  on(checkQuestionOneAnswer, (state, { questionId, answerId }) => {
     const newQuestions = state.questions.map((q) => {
-        if (q.id === id) {
-          return {...q, answered:true};
+        if (q.id === questionId) {
+
+          if(answerId){
+            return {...q, answered:true};
+          }
+          return q
+
+          
         } else {
           return q;
         }
