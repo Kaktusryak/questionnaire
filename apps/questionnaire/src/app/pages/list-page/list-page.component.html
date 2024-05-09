@@ -1,10 +1,9 @@
-<p>management-page works!</p>
-
 <div class="container">
-    
+    <div class="to-answer-container">
+        <lib-question-card-to-answer *ngFor="let q of questions" [question]="q">
+        </lib-question-card-to-answer>
+    </div>
+    <div class="answered-container">
 
-    <lib-question-card-to-answer *ngFor="let q of questions" [question]="q">
-
-    </lib-question-card-to-answer>
-    
+    </div>
 </div>

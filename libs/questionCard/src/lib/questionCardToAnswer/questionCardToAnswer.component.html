@@ -1,15 +1,15 @@
 <div class="container">
     <div class="text">{{question.text}}</div>
     <div *ngIf="question.type==='one'" class="one-form-container">
-        <lib-one-answer-form [answers]="question.answers"></lib-one-answer-form>
+        <lib-one-answer-form (oneAnswerEvent)="handleOneAnswer($event)" [answers]="question.answers"></lib-one-answer-form>
     </div>
 
     <div *ngIf="question.type==='many'" class="one-form-container">
-        <lib-many-answers-form [answers]="question.answers"></lib-many-answers-form>
+        <lib-many-answers-form (manyAnswersEvent)="handleManyAnswers($event)" [answers]="question.answers"></lib-many-answers-form>
     </div>
 
     <div *ngIf="question.type==='open'" class="one-form-container">
-        <lib-open-answer-form [answers]="question.answers"></lib-open-answer-form>
+        <lib-open-answer-form (openAnswerEvent)="handleOpenAnswer($event)" [answers]="question.answers"></lib-open-answer-form>
     </div>
 
 </div>

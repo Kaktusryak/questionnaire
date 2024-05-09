@@ -1,6 +1,6 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AnswerInterface } from '../models/question.model';
+import { AnswerInterface } from '../../models/question.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,15 +8,17 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './one-answer-form.component.html',
-  styleUrl: './one-answer-form.component.css'
+  styleUrl: './one-answer-form.component.scss'
 })
 export class OneAnswerFormComponent {
   @Input() answers : AnswerInterface[] = []
 
+  @Output() oneAnswerEvent = new EventEmitter<string>();
+
   fb = inject(FormBuilder);
 
   oneAnswerForm = this.fb.group({
-    oneAnswer: new FormControl([], Validators.required),
+    oneAnswer: new FormControl('', Validators.required),
   })
 
   ngOnInit(){
@@ -25,9 +27,15 @@ export class OneAnswerFormComponent {
     
   }
 
-  handleClickTest(){
+  handleSubmit(){
     console.log('ONE')
     console.log(this.oneAnswerForm.getRawValue())
-
+    const answer =
+      this.oneAnswerForm.getRawValue().oneAnswer !== null
+        ? this.oneAnswerForm.getRawValue().oneAnswer
+        : undefined;
+    const finalAnswer: string | undefined =
+      answer !== null ? answer : undefined;
+    this.oneAnswerEvent.emit(finalAnswer);
   }
 }

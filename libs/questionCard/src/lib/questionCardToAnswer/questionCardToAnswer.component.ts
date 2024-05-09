@@ -1,18 +1,28 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { QuestionInterface } from '../models/question.model';
-import { OneAnswerFormComponent } from '../one-answer-form/one-answer-form.component';
-import { ManyAnswersFormComponent } from '../many-answers-form/many-answers-form.component';
-import { OpenAnswerFormComponent } from '../open-answer-form/open-answer-form.component';
-
+import { OneAnswerFormComponent } from './one-answer-form/one-answer-form.component';
+import { ManyAnswersFormComponent } from './many-answers-form/many-answers-form.component';
+import { OpenAnswerFormComponent } from './open-answer-form/open-answer-form.component';
 
 @Component({
   selector: 'lib-question-card-to-answer',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, OneAnswerFormComponent, ManyAnswersFormComponent, OpenAnswerFormComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    OneAnswerFormComponent,
+    ManyAnswersFormComponent,
+    OpenAnswerFormComponent,
+  ],
   templateUrl: './questionCardToAnswer.component.html',
-  styleUrl: './questionCardToAnswer.component.css',
+  styleUrl: './questionCardToAnswer.component.scss',
 })
 export class QuestionCardToAnswerComponent {
   @Input() question: QuestionInterface = {
@@ -24,16 +34,27 @@ export class QuestionCardToAnswerComponent {
     date: new Date(),
   };
 
-
-  
-  ngOnInit(){
-    console.log('inside question')
-    console.log(this.question)
-    
+  ngOnInit() {
+    console.log('inside question');
+    console.log(this.question);
   }
 
-  handleClickTest(){
-    console.log('Submit answers')
+  handleClickTest() {
+    console.log('Submit answers');
+  }
 
+  handleOneAnswer(newAnswerId: string) {
+    console.log('got it')
+    console.log(newAnswerId)
+  }
+
+  handleOpenAnswer(newAnswerText: string) {
+    console.log('got it')
+    console.log(newAnswerText)
+  }
+
+  handleManyAnswers(newAnswersArray:{id:string,correct:boolean}[]){
+    console.log('got it')
+    console.log(newAnswersArray)
   }
 }

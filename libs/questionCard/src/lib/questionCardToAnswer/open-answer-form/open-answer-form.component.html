@@ -1,0 +1,9 @@
+<form action="" [formGroup]="openAnswerForm">
+    <div class="textarea-div">
+        <textarea formControlName="answer"></textarea>
+    </div>
+    
+    <div class="button-div">
+        <button (click)="handleSubmit()" class="submit-button">Submit</button>
+    </div>
+</form>

@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AnswerInterface } from '../models/question.model';
+import { AnswerInterface } from '../../models/question.model';
 
 @Component({
   selector: 'lib-open-answer-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './open-answer-form.component.html',
-  styleUrl: './open-answer-form.component.css',
+  styleUrl: './open-answer-form.component.scss',
 })
 export class OpenAnswerFormComponent {
   @Input() answers: AnswerInterface[] = [];
+
+  @Output() openAnswerEvent = new EventEmitter<string>();
 
   fb = inject(FormBuilder);
 
@@ -24,8 +26,15 @@ export class OpenAnswerFormComponent {
     console.log(this.answers);
   }
 
-  handleClickTest() {
+  handleSubmit() {
     console.log('OPEN');
     console.log(this.openAnswerForm.getRawValue());
+    const answer =
+      this.openAnswerForm.getRawValue().answer !== null
+        ? this.openAnswerForm.getRawValue().answer
+        : undefined;
+    const finalAnswer: string | undefined =
+      answer !== null ? answer : undefined;
+    this.openAnswerEvent.emit(finalAnswer);
   }
 }

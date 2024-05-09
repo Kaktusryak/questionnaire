@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [QuestionCardToAnswerComponent, CommonModule],
   templateUrl: './list-page.component.html',
-  styleUrl: './list-page.component.css',
+  styleUrl: './list-page.component.scss',
 })
 export class ListPageComponent {
   store = inject(Store);
