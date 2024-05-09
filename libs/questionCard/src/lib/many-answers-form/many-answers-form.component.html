@@ -1,0 +1,11 @@
+<p>many-answers-form works!</p>
+
+<form action="" [formGroup]="manyAnswersForm">
+    <div>MANY</div>
+    <div *ngFor="let a of answers">
+        <input type="checkbox" name="manyAnswers" [formControlName]="a.id" [value]="a.text" [id]="a.id" /><label
+            [htmlFor]="a.id">{{a.text}}</label>
+    </div>
+
+    <button (click)="handleClickTest()" class="submit-button">Submit</button>
+</form>

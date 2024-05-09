@@ -1,0 +1,11 @@
+<p>one-answer-form works!</p>
+
+<form action="" [formGroup]="oneAnswerForm">
+    <div>ONE</div>
+    <div *ngFor="let a of answers">
+        <input type="radio" name="oneAnswer" formControlName="oneAnswer" [value]="a.text" [id]="a.id" /><label
+            [htmlFor]="a.id">{{a.text}}</label>
+    </div>
+
+    <button (click)="handleClickTest()" class="submit-button">Submit</button>
+</form>

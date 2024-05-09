@@ -1,12 +1,15 @@
 <div class="container">
-    <div class="text">Question card</div>
-    <div class="one-form-container">
-        <button class="submit-button">Submit</button>
+    <div class="text">{{question.text}}</div>
+    <div *ngIf="question.type==='one'" class="one-form-container">
+        <lib-one-answer-form [answers]="question.answers"></lib-one-answer-form>
     </div>
-    <div class="many-form-container">
-        <button class="submit-button">Submit</button>
+
+    <div *ngIf="question.type==='many'" class="one-form-container">
+        <lib-many-answers-form [answers]="question.answers"></lib-many-answers-form>
     </div>
-    <div class="open-form-container">
-        <button class="submit-button">Submit</button>
+
+    <div *ngIf="question.type==='open'" class="one-form-container">
+        <lib-open-answer-form [answers]="question.answers"></lib-open-answer-form>
     </div>
+
 </div>
