@@ -17,30 +17,40 @@ import { AnswerFormComponent } from './answer/answerForm.component';
   styleUrl: './questionForm.component.scss',
 })
 export class QuestionFormComponent {
-  @Input() text: string = '';
-  @Input() type: string = 'one';
+  @Input() question: QuestionInterface = {
+    id: Date.now().toString(),
+    text: '',
+    type: 'one',
+    answers: [],
+    answered: false,
+    date: new Date(),
+  };
+
   @Input() answers: AnswerInterface[] = [];
-  @Input() answered: boolean = false;
-  @Input() date: Date = new Date();
-  @Input() id: string = Date.now().toString();
   @Input() isEdit: boolean = false;
+
+  editedQuestion = { ...this.question, answers: this.answers };
+
+  ngOnInit(){
+    this.editedQuestion = { ...this.question, answers: this.answers };
+  }
 
   @Output() newItemEvent = new EventEmitter<QuestionInterface>();
 
   fb = inject(FormBuilder);
 
   questionForm = this.fb.group({
-    text: [this.text, [Validators.required]],
-    typeControl: new FormControl(this.type, Validators.required),
+    text: [this.editedQuestion.text, [Validators.required]],
+    typeControl: new FormControl(this.question.type, Validators.required),
   });
 
   onAddAnswer(newAnswer: AnswerInterface) {
-    this.answers.push(newAnswer);
-    console.log(this.answers);
+    this.editedQuestion = {...this.editedQuestion,answers:[...this.editedQuestion.answers,newAnswer]}
+    console.log(this.editedQuestion.answers);
   }
 
   onChangeAnswer(newAnswer: AnswerInterface) {
-    this.answers = this.answers.map((ans) => {
+    this.editedQuestion.answers = this.editedQuestion.answers.map((ans) => {
       if (ans.id == newAnswer.id) {
         return newAnswer;
       } else {
@@ -48,17 +58,17 @@ export class QuestionFormComponent {
       }
     });
     console.log('qF');
-    console.log(this.answers);
+    console.log(this.editedQuestion.answers);
   }
 
   onAddQuestion() {
     const question: QuestionInterface = {
-      id: this.id,
+      id: this.editedQuestion.id,
       text: this.questionForm.getRawValue().text || '',
       type: this.questionForm.getRawValue().typeControl || 'one',
-      date: this.date,
-      answers: this.answers,
-      answered: this.answered,
+      date: this.editedQuestion.date,
+      answers: this.editedQuestion.answers,
+      answered: this.editedQuestion.answered,
     };
     this.newItemEvent.emit(question); //throws from question form to create page
   }

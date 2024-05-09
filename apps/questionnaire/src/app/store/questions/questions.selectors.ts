@@ -1,7 +1,15 @@
-import { createSelector } from "@ngrx/store";
-import { AppStoreInterface } from "../app.state";
-import { QuestionInterface } from "libs/questionForm/src/lib/questionForm/models/question.model";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { AppStoreInterface } from '../app.state';
 
-export const selectFeature = (state:AppStoreInterface)=>state.questions
+export const selectAppState =
+  createFeatureSelector<AppStoreInterface>('appState');
 
-export const selectAllQuestions = createSelector(selectFeature,(state:QuestionInterface[])=>state)
+export const selectQuestions = createSelector(
+  selectAppState,
+  (state: AppStoreInterface) => state.questions
+);
+
+export const selectQuestionById = (questionId: string) =>
+  createSelector(selectAppState, (state: AppStoreInterface) =>
+    state.questions.find((question) => question.id === questionId)
+  );

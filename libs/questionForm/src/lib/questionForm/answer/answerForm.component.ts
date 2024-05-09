@@ -11,7 +11,7 @@ import { AnswerInterface } from '../models/question.model';
   styleUrl: './answerForm.component.scss',
 })
 export class AnswerFormComponent {
-  @Input() text!: string 
+  @Input() text: string = ''
   @Input() id: string = Date.now().toString();
   @Input() correct: boolean = false;
   @Input() isChange: boolean = false;
@@ -22,7 +22,16 @@ export class AnswerFormComponent {
 
   buttonText = 'Add'
 
-  
+
+
+
+  ngOnInit(){
+    if(this.isChange){
+      this.buttonText="Change"
+    }
+  }
+
+
 
   answerForm = this.fb.group({
     text: [this.text, [Validators.required]],
@@ -30,12 +39,17 @@ export class AnswerFormComponent {
   });
 
   onAddAnswer() {
+    
+
+
+
     if (!this.isChange) {
       const answer: AnswerInterface = {
         id: Date.now().toString(),
         text: this.answerForm.getRawValue().text || '',
         correct: this.answerForm.getRawValue().correct || false,
       };
+      console.log('adding')
       this.newItemEvent.emit(answer); //throws from child to parent
       console.log(answer);
     }else{

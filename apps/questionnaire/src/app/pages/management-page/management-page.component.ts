@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectAllQuestions } from '../../store/questions/questions.selectors';
+
 import { QuestionInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model';
 import { QuestionCardComponent } from '@angular-monorepo/questionCard';
+import { selectQuestions } from '../../store/questions/questions.selectors';
 
 @Component({
   selector: 'app-management-page',
@@ -30,6 +31,10 @@ export class ManagementPageComponent {
     // console.log(this.questions$)
     // this.questions$=this.store.select(selectAllQuestions)//selector is not working ?????
     
+  }
+
+  ngOnInit(){
+    this.questions$ = this.store.pipe(select(selectQuestions));
   }
 
 }

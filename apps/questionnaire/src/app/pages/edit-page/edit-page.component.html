@@ -1,3 +1,5 @@
-<p>create-page works!</p>
-<lib-question-form (newItemEvent)="onAddQuestion($event)"></lib-question-form>
-<br/>
+<div class="container">
+    <a routerLink="/manage">Home</a>
+    <lib-question-form [question]="question || alertQuestion " [answers]="question.answers || alertQuestion.answers"
+        (newItemEvent)="onChangeQuestion($event)"></lib-question-form>
+</div>
