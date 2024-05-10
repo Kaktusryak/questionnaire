@@ -1,18 +1,18 @@
 
 <div class="form-container">
     <form action="" [formGroup]="questionForm" (ngSubmit)="onAddQuestion()">
-        <input [ngModel]="question.text" type="text" class="form-control" id="text" formControlName="text" placeholder="Question text" />
+        <input type="text" class="form-control" id="text" formControlName="text" placeholder="Question text" />
         <div class="form-radios">
             <div>
-                <input [ngModel]="question.type" type="radio" name="typeControl" formControlName="typeControl" value="one" id="one"><label
+                <input  type="radio" name="typeControl" formControlName="typeControl" value="one" id="one"><label
                 for="one">One</label>
             </div>
             <div>
-                <input [ngModel]="question.type" type="radio" name="typeControl" formControlName="typeControl" value="many" id="many"><label
+                <input  type="radio" name="typeControl" formControlName="typeControl" value="many" id="many"><label
                 for="one">Many</label>
             </div>
             <div>
-                <input [ngModel]="question.type" type="radio" name="typeControl" formControlName="typeControl" value="open" id="open"><label
+                <input type="radio" name="typeControl" formControlName="typeControl" value="open" id="open"><label
                 for="one">Open</label>
             </div>
             

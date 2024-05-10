@@ -15,10 +15,11 @@ export class QuestionCardComponent {
   @Input() date : Date = new Date()
   @Input() type : string = ''
   @Input() id : string = ''
+  @Input() onEdit! : (questionId:string) => void
 
   router = inject(Router)
 
   handleEdit(){
-    this.router.navigateByUrl('edit/'+ this.id)
+    this.onEdit(this.id)
   }
 }

@@ -7,7 +7,7 @@ import { createQuestion, editQuestion } from '../../store/questions/questions.ac
 import { QuestionFormComponent } from '@angular-monorepo/questionForm';
 
 import { Observable, Subscription, filter } from 'rxjs';
-import { selectQuestionById } from '../../store/questions/questions.selectors';
+
 
 @Component({
   selector: 'app-edit-page',
@@ -34,9 +34,6 @@ export class EditPageComponent {
     date:new Date()
   }
   
-  
-  
-
   ngOnInit(): void {
     
     const id = this.route.snapshot.paramMap.get('id') || '';
@@ -47,8 +44,6 @@ export class EditPageComponent {
       console.log(this.question)
     })
   }
-
-  
 
   onChangeQuestion(question: QuestionInterface) {
     console.log('changed')

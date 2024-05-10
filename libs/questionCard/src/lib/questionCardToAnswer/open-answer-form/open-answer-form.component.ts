@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AnswerInterface } from '../../models/question.model';
+import { AnswerInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model'; 
 
 @Component({
   selector: 'lib-open-answer-form',
@@ -22,6 +22,10 @@ export class OpenAnswerFormComponent {
   });
 
   ngOnInit() {
+
+    this.openAnswerForm = this.fb.group({
+      answer: ['', Validators.required],
+    });
     console.log('inside question');
     console.log(this.answers);
   }

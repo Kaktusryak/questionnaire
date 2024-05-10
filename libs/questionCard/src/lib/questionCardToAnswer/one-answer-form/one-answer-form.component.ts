@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AnswerInterface } from '../../models/question.model';
+import { AnswerInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model'; 
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -22,6 +22,9 @@ export class OneAnswerFormComponent {
   })
 
   ngOnInit(){
+    this.oneAnswerForm = this.fb.group({
+      oneAnswer: new FormControl('', Validators.required),
+    })
     console.log('inside question')
     console.log(this.answers)
     

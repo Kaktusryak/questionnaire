@@ -16,27 +16,32 @@ export class AnswerFormComponent {
   @Input() correct: boolean = false;
   @Input() isChange: boolean = false;
 
-  fb = inject(FormBuilder);
 
   @Output() newItemEvent = new EventEmitter<AnswerInterface>();
 
+  fb = inject(FormBuilder);
   buttonText = 'Add'
-
-
-
-
-  ngOnInit(){
-    if(this.isChange){
-      this.buttonText="Change"
-    }
-  }
-
 
 
   answerForm = this.fb.group({
     text: [this.text, [Validators.required]],
     correct: [this.correct, Validators.required],
   });
+
+
+  ngOnInit(){
+    if(this.isChange){
+      this.buttonText="Change"
+    }
+    this.answerForm = this.fb.group({
+      text: [this.text, [Validators.required]],
+      correct: [this.correct, Validators.required],
+    });
+  }
+
+
+
+  
 
   onAddAnswer() {
     

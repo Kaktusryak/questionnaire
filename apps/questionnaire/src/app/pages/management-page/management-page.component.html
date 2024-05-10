@@ -2,7 +2,7 @@
 
 <div class="container">
     
-    <lib-question-card *ngFor="let q of questions" [text]="q.text" [date]="q.date" [type]="q.type" [id]="q.id">
+    <lib-question-card *ngFor="let q of questions" [text]="q.text" [date]="q.date" [type]="q.type" [id]="q.id" [onEdit]="navigateToEditPage">
         
     </lib-question-card>
 </div>

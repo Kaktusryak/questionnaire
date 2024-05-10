@@ -6,10 +6,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { QuestionInterface } from '../models/question.model';
+
 import { OneAnswerFormComponent } from './one-answer-form/one-answer-form.component';
 import { ManyAnswersFormComponent } from './many-answers-form/many-answers-form.component';
 import { OpenAnswerFormComponent } from './open-answer-form/open-answer-form.component';
+
+
+import { QuestionInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model';
 
 @Component({
   selector: 'lib-question-card-to-answer',
@@ -34,9 +37,9 @@ export class QuestionCardToAnswerComponent {
     date: new Date(),
   };
 
-  @Output () oneAnswerEvent = new EventEmitter<string>()
-  @Output () manyAnswersEvent = new EventEmitter<{id:string,correct:boolean}[]>()
-  @Output () openAnswerEvent = new EventEmitter<string>()
+  @Output () oneAnswerEvent = new EventEmitter()
+  @Output () manyAnswersEvent = new EventEmitter()
+  @Output () openAnswerEvent = new EventEmitter()
 
   ngOnInit() {
     console.log('inside question');
@@ -50,18 +53,30 @@ export class QuestionCardToAnswerComponent {
   handleOneAnswer(newAnswerId: string) {
     console.log('got it')
     console.log(newAnswerId)
-    this.oneAnswerEvent.emit(newAnswerId)
+    const questionAnswerPair = {
+      questionId:this.question.id,
+      answerId:newAnswerId
+    }
+    this.oneAnswerEvent.emit(questionAnswerPair)
   }
 
   handleOpenAnswer(newAnswerText: string) {
     console.log('got it')
     console.log(newAnswerText)
-    this.openAnswerEvent.emit(newAnswerText)
+    const questionAnswerPair = {
+      questionId:this.question.id,
+      answerText:newAnswerText
+    }
+    this.openAnswerEvent.emit(questionAnswerPair)
   }
 
   handleManyAnswers(newAnswersArray:{id:string,correct:boolean}[]){
     console.log('got it')
     console.log(newAnswersArray)
-    this.manyAnswersEvent.emit(newAnswersArray)
+    const questionAnswersPair = {
+      questionId:this.question.id,
+      answerIdsArray:newAnswersArray
+    }
+    this.manyAnswersEvent.emit(questionAnswersPair)
   }
 }

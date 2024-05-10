@@ -25,17 +25,15 @@ export class QuestionFormComponent {
     answered: false,
     date: new Date(),
   };
-
   @Input() answers: AnswerInterface[] = [];
   @Input() isEdit: boolean = false;
 
+  @Output() newItemEvent = new EventEmitter<QuestionInterface>();
+
   editedQuestion = { ...this.question, answers: this.answers };
 
-  ngOnInit(){
-    this.editedQuestion = { ...this.question, answers: this.answers };
-  }
-
-  @Output() newItemEvent = new EventEmitter<QuestionInterface>();
+  
+  
 
   fb = inject(FormBuilder);
 
@@ -43,6 +41,14 @@ export class QuestionFormComponent {
     text: [this.editedQuestion.text, [Validators.required]],
     typeControl: new FormControl(this.question.type, Validators.required),
   });
+  
+  ngOnInit(){
+    this.questionForm = this.fb.group({
+      text: [this.editedQuestion.text, [Validators.required]],
+      typeControl: new FormControl(this.question.type, Validators.required),
+    });
+    this.editedQuestion = { ...this.question, answers: this.answers };
+  }
 
   onAddAnswer(newAnswer: AnswerInterface) {
     this.editedQuestion = {...this.editedQuestion,answers:[...this.editedQuestion.answers,newAnswer]}

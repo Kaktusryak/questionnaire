@@ -1,8 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import { appState } from '../app.state';
 import {
-  
+  checkQuestionManyAnswers,
   checkQuestionOneAnswer,
+  checkQuestionOpenAnswer,
   createQuestion,
   deleteQuestion,
   editQuestion,
@@ -11,7 +12,7 @@ import {
 export const questionsReducer = createReducer(
   appState,
   on(createQuestion, (state, { question }) => {
-    console.log('creating')
+    console.log('creating');
     return {
       ...state,
       questions: [...state.questions, question],
@@ -39,21 +40,61 @@ export const questionsReducer = createReducer(
   }),
   on(checkQuestionOneAnswer, (state, { questionId, answerId }) => {
     const newQuestions = state.questions.map((q) => {
-        if (q.id === questionId) {
-
-          if(answerId){
-            return {...q, answered:true};
+      if (q.id === questionId) {//this is the question we are looking for
+        for (let a of q.answers) {
+          if (a.id === answerId && a.correct === true) {//if answer of answerId is correct
+            console.log('checking');
+            return {
+              ...q,
+              answered: true,
+            };
           }
-          return q
-
-          
-        } else {
-          return q;
         }
-      });
+      }
+      return q;
+    });
+    return {
+      ...state,
+      questions: newQuestions,
+    };
+  }),
+  on(checkQuestionOpenAnswer,(state,{questionId, answerText})=>{
+    const newQuestions = state.questions.map((q)=>{
+      if(q.id === questionId){
+        for(let a of q.answers){
+          if(a.text==answerText){
+            return {
+              ...q,
+              answered:true
+            }
+          }
+        }
+      }
+      return q
+    })
+    return{
+      ...state,
+      questions:newQuestions
+    }
+  }),
+  on(checkQuestionManyAnswers, (state,{questionId, answerIdsArray})=>{
+    const newQuestions = state.questions.map((q)=>{
+      if(q.id === questionId){
+        for(let i in answerIdsArray){
+          if(answerIdsArray[i].correct !== q.answers[i].correct){
+            return q
+          }
+          
+        }
+      }
+      return{
+        ...q,
+        answered:true
+      }
+    })
     return {
       ...state,
       questions:newQuestions
-    };
+    }
   })
 );

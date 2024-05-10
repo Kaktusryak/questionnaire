@@ -1,5 +1,5 @@
 <div class="container">
-    <a routerLink="/manage">Home</a>
+
     <lib-question-form [question]="question || alertQuestion " [answers]="question.answers || alertQuestion.answers"
         (newItemEvent)="onChangeQuestion($event)"></lib-question-form>
 </div>
