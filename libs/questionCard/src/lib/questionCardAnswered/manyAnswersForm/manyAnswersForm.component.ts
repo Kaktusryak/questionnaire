@@ -7,13 +7,13 @@ import { AnswerInterface } from 'libs/questionForm/src/lib/questionForm/models/q
   selector: 'lib-many-answers-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './many-answers-form.component.html',
-  styleUrl: './many-answers-form.component.scss'
+  templateUrl: './manyAnswersForm.component.html',
+  styleUrl: './manyAnswersForm.component.scss'
 })
 export class ManyAnswersFormComponent {
   @Input() answers : AnswerInterface[] = []
   
-  @Output() manyAnswersEvent = new EventEmitter<{id:string,correct:boolean}[]>();
+  @Output() rollBackEvent = new EventEmitter();
 
   fb = inject(FormBuilder);
 
@@ -31,15 +31,6 @@ export class ManyAnswersFormComponent {
 
   handleSubmit(){
     console.log('MANY')
-    const array  = Object.entries(this.manyAnswersForm.getRawValue()) 
-    const objectsArray : {id:string, correct:boolean}[]  = array.map(([id,correct])=>{
-      return{
-        id,
-        correct: !!correct
-      }
-    })
-    console.log(objectsArray)
-
-    this.manyAnswersEvent.emit(objectsArray)
+    this.rollBackEvent.emit()
   }
 }

@@ -16,18 +16,16 @@ export class AnswerFormComponent {
   @Input() correct: boolean = false;
   @Input() isChange: boolean = false;
 
-
   @Output() newItemEvent = new EventEmitter<AnswerInterface>();
 
   fb = inject(FormBuilder);
-  buttonText = 'Add'
 
+  buttonText = 'Add'
 
   answerForm = this.fb.group({
     text: [this.text, [Validators.required]],
     correct: [this.correct, Validators.required],
   });
-
 
   ngOnInit(){
     if(this.isChange){
@@ -39,15 +37,7 @@ export class AnswerFormComponent {
     });
   }
 
-
-
-  
-
   onAddAnswer() {
-    
-
-
-
     if (!this.isChange) {
       const answer: AnswerInterface = {
         id: Date.now().toString(),

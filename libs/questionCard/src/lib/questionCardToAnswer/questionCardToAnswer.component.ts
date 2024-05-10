@@ -7,9 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { OneAnswerFormComponent } from './one-answer-form/one-answer-form.component';
-import { ManyAnswersFormComponent } from './many-answers-form/many-answers-form.component';
-import { OpenAnswerFormComponent } from './open-answer-form/open-answer-form.component';
+import { OneAnswerFormComponent } from './oneAnswerForm/oneAnswerForm.component';
+import { ManyAnswersFormComponent } from './manyAnswersForm/manyAnswersForm.component';
+import { OpenAnswerFormComponent } from './openAnswerForm/openAnswerForm.component';
 
 
 import { QuestionInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model';

@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AnswerInterface, QuestionInterface } from './models/question.model';
-import { AnswerFormComponent } from './answer/answerForm.component';
+import { AnswerFormComponent } from './answerForm/answerForm.component';
 
 @Component({
   selector: 'lib-question-form',

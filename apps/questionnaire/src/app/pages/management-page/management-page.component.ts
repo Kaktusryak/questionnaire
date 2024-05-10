@@ -7,6 +7,7 @@ import { QuestionInterface } from 'libs/questionForm/src/lib/questionForm/models
 import { QuestionCardComponent } from '@angular-monorepo/questionCard';
 import { selectAllQuestions } from '../../store/questions/questions.selectors';
 import { Router } from '@angular/router';
+import { deleteQuestion } from '../../store/questions/questions.actions';
 
 @Component({
   selector: 'app-management-page',
@@ -44,6 +45,9 @@ export class ManagementPageComponent {
 
   navigateToEditPage(questionId:string) {
     this.router.navigateByUrl('/edit/' + questionId)
+  }
+  handleDelete(questionId:string){
+    this.store.dispatch(deleteQuestion({id:questionId}))
   }
 
   ngOnDestroy(){

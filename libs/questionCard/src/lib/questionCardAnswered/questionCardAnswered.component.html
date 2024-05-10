@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="text">{{question.text}}</div>
+    <div *ngIf="question.type==='one'" class="one-form-container">
+        <lib-one-answer-form (rollBackEvent)="handleRollBack()" [answers]="question.answers"></lib-one-answer-form>
+    </div>
+
+    <div *ngIf="question.type==='many'" class="one-form-container">
+        <lib-many-answers-form (rollBackEvent)="handleRollBack()" [answers]="question.answers"></lib-many-answers-form>
+    </div>
+
+    <div *ngIf="question.type==='open'" class="one-form-container">
+        <lib-open-answer-form (rollBackEvent)="handleRollBack()" [answers]="question.answers"></lib-open-answer-form>
+    </div>
+
+</div>

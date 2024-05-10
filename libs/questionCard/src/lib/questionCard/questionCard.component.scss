@@ -11,15 +11,26 @@
     .card-footer{
         text-align: center;
     }
-    .card-edit-button{
-        background: none;
-        border: none;
-        text-decoration: underline;
-        font-size: larger;
-        cursor: pointer;
-        font-weight: 500;
-
-
-    }
+    .buttons-div{
+        display: flex;
+        justify-content: space-between;
+        .card-edit-button{
+            background: none;
+            border: none;
+            text-decoration: underline;
+            font-size: larger;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .card-delete-button{
+            background: none;
+            border: none;
+            text-decoration: underline;
+            font-size: larger;
+            cursor: pointer;
+            font-weight: 500;
+        }
+    }   
+    
     
 }

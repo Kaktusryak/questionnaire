@@ -7,13 +7,13 @@ import { AnswerInterface } from 'libs/questionForm/src/lib/questionForm/models/q
   selector: 'lib-open-answer-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './open-answer-form.component.html',
-  styleUrl: './open-answer-form.component.scss',
+  templateUrl: './openAnswerForm.component.html',
+  styleUrl: './openAnswerForm.component.scss',
 })
 export class OpenAnswerFormComponent {
   @Input() answers: AnswerInterface[] = [];
 
-  @Output() openAnswerEvent = new EventEmitter<string>();
+  @Output() rollBackEvent = new EventEmitter<string>();
 
   fb = inject(FormBuilder);
 
@@ -32,13 +32,7 @@ export class OpenAnswerFormComponent {
 
   handleSubmit() {
     console.log('OPEN');
-    console.log(this.openAnswerForm.getRawValue());
-    const answer =
-      this.openAnswerForm.getRawValue().answer !== null
-        ? this.openAnswerForm.getRawValue().answer
-        : undefined;
-    const finalAnswer: string | undefined =
-      answer !== null ? answer : undefined;
-    this.openAnswerEvent.emit(finalAnswer);
+    
+    this.rollBackEvent.emit();
   }
 }

@@ -1,4 +1,3 @@
-
 <div class="form-container">
     <form action="" [formGroup]="questionForm" (ngSubmit)="onAddQuestion()">
         <input type="text" class="form-control" id="text" formControlName="text" placeholder="Question text" />
@@ -15,19 +14,13 @@
                 <input type="radio" name="typeControl" formControlName="typeControl" value="open" id="open"><label
                 for="one">Open</label>
             </div>
-            
         </div>
         <div class="form-button-div">
             <button type="submit">Submit</button>
-        </div>
-        
+        </div>   
     </form>
-    
-
-    
-
     <lib-answer-form (newItemEvent)="onAddAnswer($event)"></lib-answer-form>
-
+    <hr>
     <lib-answer-form *ngFor="let answer of editedQuestion.answers" (newItemEvent)="onChangeAnswer($event)" [text]="answer.text"
         [id]="answer.id" [correct]="answer.correct" [isChange]="true">  </lib-answer-form>
 </div>

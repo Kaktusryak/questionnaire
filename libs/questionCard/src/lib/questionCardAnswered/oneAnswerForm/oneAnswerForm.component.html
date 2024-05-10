@@ -1,0 +1,10 @@
+<form action="" [formGroup]="oneAnswerForm">
+    <div *ngFor="let a of answers">
+        <input type="radio" name="oneAnswer" formControlName="oneAnswer" [value]="a.id"  [checked]="a.correct" [id]="a.id" /><label
+            [htmlFor]="a.id">{{a.text}}</label>
+    </div>
+    <div class="button-div">
+        <button (click)="handleSubmit()" class="submit-button">Roll back</button>
+    </div>
+    
+</form>

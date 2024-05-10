@@ -1,9 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { QuestionCardToAnswerComponent } from '@angular-monorepo/questionCard';
+import { QuestionCardAnsweredComponent, QuestionCardToAnswerComponent } from '@angular-monorepo/questionCard';
+
 import { Store, select } from '@ngrx/store';
 import { QuestionInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model';
 import { Observable, Subscription } from 'rxjs';
-import { selectAllQuestions, selectToAnswerQuestions, } from '../../store/questions/questions.selectors';
+import {
+  selectAllQuestions,
+  selectAnsweredQuestions,
+  selectToAnswerQuestions,
+} from '../../store/questions/questions.selectors';
 import { CommonModule } from '@angular/common';
 import {
   checkQuestionManyAnswers,
@@ -14,31 +19,34 @@ import {
 @Component({
   selector: 'app-list-page',
   standalone: true,
-  imports: [QuestionCardToAnswerComponent, CommonModule],
+  imports: [QuestionCardToAnswerComponent, CommonModule, QuestionCardAnsweredComponent],
   templateUrl: './list-page.component.html',
   styleUrl: './list-page.component.scss',
 })
 export class ListPageComponent {
   store = inject(Store);
-  constructor() {
-    
-  }
-  questions: QuestionInterface[] = [];
-  
 
-  questionsSubscription$?: Subscription;
-  data$?: Observable<QuestionInterface[]>;
+  questionsToAnswer: QuestionInterface[] = [];
+  questionsAnswered: QuestionInterface[] = [];
+
+  questionsToAnswerSubscription$?: Subscription;
+  questionsAnsweredSubscription$?: Subscription;
 
   ngOnInit() {
-    // this.store.select('questions').subscribe((d) => {
-    //   this.questions = d.questions;
-    //   console.log(d.questions);
-    // });
-    this.questionsSubscription$ = this.store.pipe(select(selectToAnswerQuestions)).subscribe(d=>{
-      console.log('selector')
-      this.questions = d
-      console.log(d)
-    });
+    this.questionsToAnswerSubscription$ = this.store
+      .pipe(select(selectToAnswerQuestions))
+      .subscribe((d) => {
+        console.log('selector to answer');
+        this.questionsToAnswer = d;
+        console.log(d);
+      });
+    this.questionsAnsweredSubscription$ = this.store
+      .pipe(select(selectAnsweredQuestions))
+      .subscribe((d) => {
+        console.log('selector answered');
+        this.questionsAnswered = d;
+        console.log(d);
+      });
   }
 
   handleCheckOneAnswer(questionAnswerPair: any) {
@@ -70,5 +78,12 @@ export class ListPageComponent {
         answerIdsArray: questionAnswersPair.answerIdsArray,
       })
     );
+  }
+  handleRollBack(questionId:string){
+    console.log('works '+ questionId)
+  }
+
+  ngOnDestroy() {
+    this.questionsToAnswerSubscription$?.unsubscribe();
   }
 }

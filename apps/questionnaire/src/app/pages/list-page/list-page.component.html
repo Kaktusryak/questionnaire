@@ -2,9 +2,12 @@
     <div class="to-answer-container">
         <lib-question-card-to-answer (oneAnswerEvent)="handleCheckOneAnswer($event)"
             (openAnswerEvent)="handleCheckOpenAnswer($event)" (manyAnswersEvent)="handleCheckManyAnswers($event)"
-            *ngFor="let q of questions" [question]="q">
+            *ngFor="let q of questionsToAnswer" [question]="q">
         </lib-question-card-to-answer>
     </div>
     <div class="answered-container">
+        <lib-question-card-answered (rollBackEvent)="handleRollBack($event)"
+            *ngFor="let q of questionsAnswered" [question]="q">
+        </lib-question-card-answered>
     </div>
 </div>

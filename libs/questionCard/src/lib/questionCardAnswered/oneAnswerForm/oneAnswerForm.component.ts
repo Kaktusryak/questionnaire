@@ -7,13 +7,13 @@ import { CommonModule } from '@angular/common';
   selector: 'lib-one-answer-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './one-answer-form.component.html',
-  styleUrl: './one-answer-form.component.scss'
+  templateUrl: './oneAnswerForm.component.html',
+  styleUrl: './oneAnswerForm.component.scss'
 })
 export class OneAnswerFormComponent {
   @Input() answers : AnswerInterface[] = []
 
-  @Output() oneAnswerEvent = new EventEmitter<string>();
+  @Output() rollBackEvent = new EventEmitter();
 
   fb = inject(FormBuilder);
 
@@ -23,7 +23,7 @@ export class OneAnswerFormComponent {
 
   ngOnInit(){
     this.oneAnswerForm = this.fb.group({
-      oneAnswer: new FormControl('', Validators.required),
+      oneAnswer: new FormControl('', Validators.required)
     })
     console.log('inside question')
     console.log(this.answers)
@@ -32,13 +32,7 @@ export class OneAnswerFormComponent {
 
   handleSubmit(){
     console.log('ONE')
-    console.log(this.oneAnswerForm.getRawValue())
-    const answer =
-      this.oneAnswerForm.getRawValue().oneAnswer !== null
-        ? this.oneAnswerForm.getRawValue().oneAnswer
-        : undefined;
-    const finalAnswer: string | undefined =
-      answer !== null ? answer : undefined;
-    this.oneAnswerEvent.emit(finalAnswer);
+    
+    this.rollBackEvent.emit();
   }
 }
