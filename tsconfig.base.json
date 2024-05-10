@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@angular-monorepo/models": ["models/src/index.ts"],
-      "@angular-monorepo/questionCard": ["libs/questionCard/src/index.ts"],
+      "@angular-monorepo/questionCard": ["libs/questionCards/src/index.ts"],
       "@angular-monorepo/questionForm": ["libs/questionForm/src/index.ts"]
     }
   },
