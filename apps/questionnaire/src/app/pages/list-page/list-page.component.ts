@@ -14,6 +14,7 @@ import {
   checkQuestionManyAnswers,
   checkQuestionOneAnswer,
   checkQuestionOpenAnswer,
+  rollBackQuestion,
 } from '../../store/questions/questions.actions';
 
 @Component({
@@ -81,6 +82,7 @@ export class ListPageComponent {
   }
   handleRollBack(questionId:string){
     console.log('works '+ questionId)
+    this.store.dispatch(rollBackQuestion({questionId:questionId}))
   }
 
   ngOnDestroy() {

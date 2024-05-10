@@ -23,7 +23,7 @@ export class OneAnswerFormComponent {
 
   ngOnInit(){
     this.oneAnswerForm = this.fb.group({
-      oneAnswer: new FormControl('', Validators.required)
+      oneAnswer: new FormControl({value:'', disabled:true}, Validators.required)
     })
     console.log('inside question')
     console.log(this.answers)

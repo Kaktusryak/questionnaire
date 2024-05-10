@@ -25,7 +25,7 @@ export class ManyAnswersFormComponent {
     console.log('inside question')
     console.log(this.answers)
     this.answers.forEach(q=>{
-      this.manyAnswersForm.addControl(q.id,this.fb.control(false))
+      this.manyAnswersForm.addControl(q.id,this.fb.control({value:false, disabled:true}))
     })
   }
 

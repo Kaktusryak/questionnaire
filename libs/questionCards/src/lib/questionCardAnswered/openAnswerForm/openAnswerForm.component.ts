@@ -15,17 +15,7 @@ export class OpenAnswerFormComponent {
 
   @Output() rollBackEvent = new EventEmitter<string>();
 
-  fb = inject(FormBuilder);
-
-  openAnswerForm = this.fb.group({
-    answer: ['', Validators.required],
-  });
-
   ngOnInit() {
-
-    this.openAnswerForm = this.fb.group({
-      answer: ['', Validators.required],
-    });
     console.log('inside question');
     console.log(this.answers);
   }

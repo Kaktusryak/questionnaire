@@ -7,6 +7,7 @@ import {
   createQuestion,
   deleteQuestion,
   editQuestion,
+  rollBackQuestion,
 } from './questions.actions';
 
 export const questionsReducer = createReducer(
@@ -38,6 +39,21 @@ export const questionsReducer = createReducer(
       questions: filteredQuestions,
     };
   }),
+  on(rollBackQuestion, (state, {questionId})=>{
+    const newQuestions = state.questions.map(q=>{
+      if(q.id===questionId){
+        return{
+          ...q,
+          answered:false
+        }
+      }
+      return q
+    })
+    return{
+      ...state,
+      questions:newQuestions
+    }
+  }),
   on(checkQuestionOneAnswer, (state, { questionId, answerId }) => {
     const newQuestions = state.questions.map((q) => {
       if (q.id === questionId) {//this is the question we are looking for
@@ -62,7 +78,7 @@ export const questionsReducer = createReducer(
     const newQuestions = state.questions.map((q)=>{
       if(q.id === questionId){
         for(let a of q.answers){
-          if(a.text==answerText){
+          if(a.text.toUpperCase()==answerText.toUpperCase()){
             return {
               ...q,
               answered:true

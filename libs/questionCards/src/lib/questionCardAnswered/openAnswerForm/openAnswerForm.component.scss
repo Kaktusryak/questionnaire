@@ -1,18 +1,9 @@
-form {
-    div {
+ul {
+    li {
         margin-bottom: 0.5rem;
-    }
-    .textarea-div {
-        width: 100%;
-        display: flex;
-        height: fit-content;
-        justify-content: center;
-        align-items: center;
-        textarea {
-            width: 80%;
-            height: 12rem;
-            resize: none;
-            padding: 0.5rem;
+        .correct {
+            color: rgb(0, 83, 0);
+            text-decoration: underline;
         }
     }
     .button-div {

@@ -1,8 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { QuestionInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model';
 
-
-
 export const createQuestion = createAction(
   '[Question] Create',
   props<{ question: QuestionInterface }>()
@@ -14,6 +12,10 @@ export const editQuestion = createAction(
 export const deleteQuestion = createAction(
   '[Question] Delete',
   props<{ id: string }>()
+);
+export const rollBackQuestion = createAction(
+  '[Question] Roll Back',
+  props<{ questionId: string }>()
 );
 export const checkQuestionOneAnswer = createAction(
   '[Question] Check One',
@@ -30,4 +32,7 @@ export const checkQuestionManyAnswers = createAction(
     answerIdsArray: { id: string; correct: boolean }[];
   }>()
 );
-export const recreateQuestion = createAction('[Question] Recreate', props<{questions:QuestionInterface[]}>())
+export const recreateQuestionsFromSource = createAction(
+  '[Question] Recreate',
+  props<{ questions: QuestionInterface[] }>()
+);

@@ -32,27 +32,30 @@ export class QuestionFormComponent {
 
   editedQuestion = { ...this.question, answers: this.answers };
 
-  
-  
-
   fb = inject(FormBuilder);
 
   questionForm = this.fb.group({
     text: [this.editedQuestion.text, [Validators.required]],
     typeControl: new FormControl(this.question.type, Validators.required),
   });
-  
-  ngOnInit(){
+
+  ngOnInit() {
+    this.editedQuestion = { ...this.question, answers: this.answers };
     this.questionForm = this.fb.group({
       text: [this.editedQuestion.text, [Validators.required]],
       typeControl: new FormControl(this.question.type, Validators.required),
     });
-    this.editedQuestion = { ...this.question, answers: this.answers };
+    
   }
 
   onAddAnswer(newAnswer: AnswerInterface) {
-    this.editedQuestion = {...this.editedQuestion,answers:[...this.editedQuestion.answers,newAnswer]}
-    console.log(this.editedQuestion.answers);
+    
+      this.editedQuestion = {
+        ...this.editedQuestion,
+        answers: [...this.editedQuestion.answers, newAnswer],
+      };
+      console.log(this.editedQuestion.answers);
+    
   }
 
   onChangeAnswer(newAnswer: AnswerInterface) {
@@ -68,14 +71,18 @@ export class QuestionFormComponent {
   }
 
   onAddQuestion() {
-    const question: QuestionInterface = {
-      id: this.editedQuestion.id,
-      text: this.questionForm.getRawValue().text || '',
-      type: this.questionForm.getRawValue().typeControl || 'one',
-      date: this.editedQuestion.date,
-      answers: this.editedQuestion.answers,
-      answered: this.editedQuestion.answered,
-    };
-    this.newItemEvent.emit(question); //throws from question form to create page
+    if (!this.questionForm.invalid) {
+      const question: QuestionInterface = {
+        id: this.editedQuestion.id,
+        text: this.questionForm.getRawValue().text || '',
+        type: this.questionForm.getRawValue().typeControl || 'one',
+        date: this.editedQuestion.date,
+        answers: this.editedQuestion.answers,
+        answered: this.editedQuestion.answered,
+      };
+      this.newItemEvent.emit(question); //throws from question form to create page
+    }else{
+      alert('Invalid question!')
+    }
   }
 }

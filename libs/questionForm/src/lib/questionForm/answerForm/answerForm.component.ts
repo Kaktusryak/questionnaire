@@ -11,7 +11,7 @@ import { AnswerInterface } from '../models/question.model';
   styleUrl: './answerForm.component.scss',
 })
 export class AnswerFormComponent {
-  @Input() text: string = ''
+  @Input() text: string = '';
   @Input() id: string = Date.now().toString();
   @Input() correct: boolean = false;
   @Input() isChange: boolean = false;
@@ -20,41 +20,45 @@ export class AnswerFormComponent {
 
   fb = inject(FormBuilder);
 
-  buttonText = 'Add'
+  buttonText = 'Add';
 
   answerForm = this.fb.group({
     text: [this.text, [Validators.required]],
     correct: [this.correct, Validators.required],
   });
 
-  ngOnInit(){
-    if(this.isChange){
-      this.buttonText="Change"
+  ngOnInit() {
+    if (this.isChange) {
+      this.buttonText = 'Change';
     }
     this.answerForm = this.fb.group({
       text: [this.text, [Validators.required]],
-      correct: [this.correct, Validators.required],
+      correct: [this.correct],
     });
   }
 
   onAddAnswer() {
-    if (!this.isChange) {
-      const answer: AnswerInterface = {
-        id: Date.now().toString(),
-        text: this.answerForm.getRawValue().text || '',
-        correct: this.answerForm.getRawValue().correct || false,
-      };
-      console.log('adding')
-      this.newItemEvent.emit(answer); //throws from child to parent
-      console.log(answer);
+    if (!this.answerForm.invalid) {
+      if (!this.isChange) {
+        const answer: AnswerInterface = {
+          id: Date.now().toString(),
+          text: this.answerForm.getRawValue().text || '',
+          correct: this.answerForm.getRawValue().correct || false,
+        };
+        console.log('adding');
+        this.newItemEvent.emit(answer); //throws from child to parent
+        console.log(answer);
+      } else {
+        const answer: AnswerInterface = {
+          id: this.id,
+          text: this.answerForm.getRawValue().text || '',
+          correct: this.answerForm.getRawValue().correct || false,
+        };
+        this.newItemEvent.emit(answer); //throws from child to parent
+        console.log(answer);
+      }
     }else{
-      const answer: AnswerInterface = {
-        id: this.id,
-        text: this.answerForm.getRawValue().text || '',
-        correct: this.answerForm.getRawValue().correct || false,
-      };
-      this.newItemEvent.emit(answer); //throws from child to parent
-      console.log(answer);
+      alert('Invalid answer')
     }
   }
 }
