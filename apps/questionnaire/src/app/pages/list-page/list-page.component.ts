@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { QuestionCardAnsweredComponent, QuestionCardToAnswerComponent } from '@angular-monorepo/questionCard';
 
 import { Store, select } from '@ngrx/store';
-import { QuestionInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model';
+
 import { Observable, Subscription } from 'rxjs';
 import {
   selectAllQuestions,
@@ -16,6 +16,7 @@ import {
   checkQuestionOpenAnswer,
   rollBackQuestion,
 } from '../../store/questions/questions.actions';
+import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.model';
 
 @Component({
   selector: 'app-list-page',

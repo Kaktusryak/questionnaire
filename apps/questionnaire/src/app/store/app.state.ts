@@ -1,4 +1,5 @@
-import { QuestionInterface } from "libs/questionForm/src/lib/questionForm/models/question.model"
+import { QuestionInterface } from "libs/questionCards/src/lib/models/question.model"
+
 
 
 export interface AppStoreInterface{

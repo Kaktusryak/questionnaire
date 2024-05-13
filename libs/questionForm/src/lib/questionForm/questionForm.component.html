@@ -21,6 +21,6 @@
     </form>
     <lib-answer-form (newItemEvent)="onAddAnswer($event)"></lib-answer-form>
     <hr>
-    <lib-answer-form *ngFor="let answer of editedQuestion.answers" (newItemEvent)="onChangeAnswer($event)" [text]="answer.text"
+    <lib-answer-form *ngFor="let answer of editedQuestion.answers" (newItemEvent)="onChangeAnswer($event)" (deleteAnswerEvent)="onDeleteAnswer($event)" [text]="answer.text"
         [id]="answer.id" [correct]="answer.correct" [isChange]="true">  </lib-answer-form>
 </div>

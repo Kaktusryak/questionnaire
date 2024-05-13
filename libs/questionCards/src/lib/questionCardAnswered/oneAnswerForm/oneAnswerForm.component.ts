@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AnswerInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model'; 
+import { AnswerInterface } from 'libs/questionCards/src/lib/models/question.model'; 
 import { CommonModule } from '@angular/common';
 
 @Component({

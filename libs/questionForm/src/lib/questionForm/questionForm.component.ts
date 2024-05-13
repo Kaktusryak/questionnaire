@@ -6,7 +6,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AnswerInterface, QuestionInterface } from './models/question.model';
+import {
+  AnswerInterface,
+  QuestionInterface,
+} from '../../../../questionCards/src/lib/models/question.model';
 import { AnswerFormComponent } from './answerForm/answerForm.component';
 
 @Component({
@@ -45,17 +48,22 @@ export class QuestionFormComponent {
       text: [this.editedQuestion.text, [Validators.required]],
       typeControl: new FormControl(this.question.type, Validators.required),
     });
-    
   }
 
   onAddAnswer(newAnswer: AnswerInterface) {
-    
-      this.editedQuestion = {
-        ...this.editedQuestion,
-        answers: [...this.editedQuestion.answers, newAnswer],
-      };
-      console.log(this.editedQuestion.answers);
-    
+    this.editedQuestion = {
+      ...this.editedQuestion,
+      answers: [...this.editedQuestion.answers, newAnswer],
+    };
+    console.log(this.editedQuestion.answers);
+  }
+
+  onDeleteAnswer(answerId: string) {
+    const newAnswers = this.editedQuestion.answers.filter(a=>a.id!==answerId)
+    this.editedQuestion = {
+      ...this.editedQuestion,
+      answers:newAnswers
+    }
   }
 
   onChangeAnswer(newAnswer: AnswerInterface) {
@@ -81,8 +89,8 @@ export class QuestionFormComponent {
         answered: this.editedQuestion.answered,
       };
       this.newItemEvent.emit(question); //throws from question form to create page
-    }else{
-      alert('Invalid question!')
+    } else {
+      alert('Invalid question!');
     }
   }
 }

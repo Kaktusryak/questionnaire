@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { QuestionInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model';
+
 import { createQuestion } from '../../store/questions/questions.actions';
 
 import { QuestionFormComponent } from '@angular-monorepo/questionForm';
 import { Router } from '@angular/router';
+import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.model';
 
 @Component({
   selector: 'app-create-page',

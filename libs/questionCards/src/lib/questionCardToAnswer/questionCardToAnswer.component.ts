@@ -12,7 +12,7 @@ import { ManyAnswersFormComponent } from './manyAnswersForm/manyAnswersForm.comp
 import { OpenAnswerFormComponent } from './openAnswerForm/openAnswerForm.component';
 
 
-import { QuestionInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model';
+import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.model';
 
 @Component({
   selector: 'lib-question-card-to-answer',

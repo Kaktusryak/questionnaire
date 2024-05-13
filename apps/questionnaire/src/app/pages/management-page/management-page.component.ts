@@ -3,11 +3,12 @@ import { Component, inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 
-import { QuestionInterface } from 'libs/questionForm/src/lib/questionForm/models/question.model';
+
 import { QuestionCardComponent } from '@angular-monorepo/questionCard';
 import { selectAllQuestions } from '../../store/questions/questions.selectors';
 import { Router } from '@angular/router';
 import { deleteQuestion } from '../../store/questions/questions.actions';
+import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.model';
 
 @Component({
   selector: 'app-management-page',

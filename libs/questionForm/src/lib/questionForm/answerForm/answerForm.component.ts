@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AnswerInterface } from '../models/question.model';
+import { AnswerInterface } from '../../../../../questionCards/src/lib/models/question.model';
 
 @Component({
   selector: 'lib-answer-form',
@@ -17,6 +17,7 @@ export class AnswerFormComponent {
   @Input() isChange: boolean = false;
 
   @Output() newItemEvent = new EventEmitter<AnswerInterface>();
+  @Output() deleteAnswerEvent = new EventEmitter<string>();
 
   fb = inject(FormBuilder);
 
@@ -60,5 +61,8 @@ export class AnswerFormComponent {
     }else{
       alert('Invalid answer')
     }
+  }
+  onDeleteAnswer(){
+    this.deleteAnswerEvent.emit(this.id)
   }
 }
