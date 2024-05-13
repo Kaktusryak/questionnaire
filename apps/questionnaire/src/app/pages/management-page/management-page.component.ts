@@ -20,11 +20,6 @@ export class ManagementPageComponent {
   store = inject(Store);
   router = inject(Router);
 
-  constructor() {
-    // console.log(this.questions$)
-    // this.questions$=this.store.select(selectAllQuestions)//selector is not working ?????
-  }
-
   subscription$?: Subscription;
   subscription2$?: Subscription;
 
@@ -34,16 +29,17 @@ export class ManagementPageComponent {
   data$?: Observable<QuestionInterface[]>;
 
   ngOnInit() {
-    this.subscription$ = this.store.select('questions').subscribe((d) => {
-      this.questions = d.questions;
-      console.log(d.questions);
-    });
-    this.questions$ = this.store.pipe(select(selectAllQuestions));
+    this.subscription$ = this.store
+      .pipe(select(selectAllQuestions))
+      .subscribe((q) => {
+        this.questions = q;
+      });
   }
 
   navigateToEditPage(questionId: string) {
     this.router.navigateByUrl('/edit/' + questionId);
   }
+
   handleDelete(questionId: string) {
     this.store.dispatch(deleteQuestion({ id: questionId }));
   }

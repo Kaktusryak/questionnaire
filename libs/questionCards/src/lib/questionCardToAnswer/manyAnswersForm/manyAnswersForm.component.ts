@@ -22,15 +22,15 @@ export class ManyAnswersFormComponent {
   manyAnswersForm = this.fb.group({})
 
   ngOnInit(){
-    console.log('inside question')
-    console.log(this.answers)
+    console.log('inside question')//
+    console.log(this.answers)//
     this.answers.forEach(q=>{
       this.manyAnswersForm.addControl(q.id,this.fb.control(false))
     })
   }
 
   handleSubmit(){
-    console.log('MANY')
+    console.log('MANY')//
     const array  = Object.entries(this.manyAnswersForm.getRawValue()) 
     const objectsArray : {id:string, correct:boolean}[]  = array.map(([id,correct])=>{
       return{
@@ -38,8 +38,7 @@ export class ManyAnswersFormComponent {
         correct: !!correct
       }
     })
-    console.log(objectsArray)
-
+    console.log(objectsArray)//
     this.manyAnswersEvent.emit(objectsArray)
   }
 }

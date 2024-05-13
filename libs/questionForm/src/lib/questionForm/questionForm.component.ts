@@ -74,8 +74,8 @@ export class QuestionFormComponent {
         return ans;
       }
     });
-    console.log('qF');
-    console.log(this.editedQuestion.answers);
+    console.log('qF');//
+    console.log(this.editedQuestion.answers);//
   }
 
   onAddQuestion() {

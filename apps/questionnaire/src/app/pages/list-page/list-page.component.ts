@@ -45,22 +45,23 @@ export class ListPageComponent {
     this.questionsToAnswerSubscription$ = this.store
       .pipe(select(selectToAnswerQuestions))
       .subscribe((d) => {
-        console.log('selector to answer');
+        console.log('selector to answer'); //
         this.questionsToAnswer = d;
-        console.log(d);
+        console.log(d); //
       });
+
     this.questionsAnsweredSubscription$ = this.store
       .pipe(select(selectAnsweredQuestions))
       .subscribe((d) => {
-        console.log('selector answered');
+        console.log('selector answered'); //
         this.questionsAnswered = d;
-        console.log(d);
+        console.log(d); //
       });
   }
 
   handleCheckOneAnswer(questionAnswerPair: any) {
-    console.log('we are in list ');
-    console.log(questionAnswerPair);
+    console.log('we are in list '); //
+    console.log(questionAnswerPair); //
     this.store.dispatch(
       checkQuestionOneAnswer({
         questionId: questionAnswerPair.questionId,
@@ -68,9 +69,10 @@ export class ListPageComponent {
       })
     );
   }
+
   handleCheckOpenAnswer(questionAnswerPair: any) {
-    console.log('we are in list ');
-    console.log(questionAnswerPair);
+    console.log('we are in list '); //
+    console.log(questionAnswerPair); //
     this.store.dispatch(
       checkQuestionOpenAnswer({
         questionId: questionAnswerPair.questionId,
@@ -78,9 +80,10 @@ export class ListPageComponent {
       })
     );
   }
+
   handleCheckManyAnswers(questionAnswersPair: any) {
-    console.log('we are in list ');
-    console.log(questionAnswersPair);
+    console.log('we are in list '); //
+    console.log(questionAnswersPair); //
     this.store.dispatch(
       checkQuestionManyAnswers({
         questionId: questionAnswersPair.questionId,
@@ -88,12 +91,14 @@ export class ListPageComponent {
       })
     );
   }
+
   handleRollBack(questionId: string) {
-    console.log('works ' + questionId);
+    console.log('works ' + questionId); //
     this.store.dispatch(rollBackQuestion({ questionId: questionId }));
   }
 
   ngOnDestroy() {
     this.questionsToAnswerSubscription$?.unsubscribe();
+    this.questionsAnsweredSubscription$?.unsubscribe();
   }
 }

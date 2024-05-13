@@ -42,17 +42,13 @@ export class QuestionCardToAnswerComponent {
   @Output () openAnswerEvent = new EventEmitter()
 
   ngOnInit() {
-    console.log('inside question');
-    console.log(this.question);
-  }
-
-  handleClickTest() {
-    console.log('Submit answers');
+    console.log('inside question');//
+    console.log(this.question);//
   }
 
   handleOneAnswer(newAnswerId: string) {
-    console.log('got it')
-    console.log(newAnswerId)
+    console.log('got it')//
+    console.log(newAnswerId)//
     const questionAnswerPair = {
       questionId:this.question.id,
       answerId:newAnswerId
@@ -61,8 +57,8 @@ export class QuestionCardToAnswerComponent {
   }
 
   handleOpenAnswer(newAnswerText: string) {
-    console.log('got it')
-    console.log(newAnswerText)
+    console.log('got it')//
+    console.log(newAnswerText)//
     const questionAnswerPair = {
       questionId:this.question.id,
       answerText:newAnswerText
@@ -71,8 +67,8 @@ export class QuestionCardToAnswerComponent {
   }
 
   handleManyAnswers(newAnswersArray:{id:string,correct:boolean}[]){
-    console.log('got it')
-    console.log(newAnswersArray)
+    console.log('got it')//
+    console.log(newAnswersArray)//
     const questionAnswersPair = {
       questionId:this.question.id,
       answerIdsArray:newAnswersArray

@@ -22,15 +22,15 @@ export class ManyAnswersFormComponent {
   manyAnswersForm = this.fb.group({})
 
   ngOnInit(){
-    console.log('inside question')
-    console.log(this.answers)
+    console.log('inside question')//
+    console.log(this.answers)//
     this.answers.forEach(q=>{
       this.manyAnswersForm.addControl(q.id,this.fb.control({value:false, disabled:true}))
     })
   }
 
   handleSubmit(){
-    console.log('MANY')
+    console.log('MANY')//
     this.rollBackEvent.emit()
   }
 }

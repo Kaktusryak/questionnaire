@@ -26,13 +26,13 @@ export class OpenAnswerFormComponent {
     this.openAnswerForm = this.fb.group({
       answer: ['', Validators.required],
     });
-    console.log('inside question');
-    console.log(this.answers);
+    console.log('inside question');//
+    console.log(this.answers);//
   }
 
   handleSubmit() {
-    console.log('OPEN');
-    console.log(this.openAnswerForm.getRawValue());
+    console.log('OPEN');//
+    console.log(this.openAnswerForm.getRawValue());//
     const answer =
       this.openAnswerForm.getRawValue().answer !== null
         ? this.openAnswerForm.getRawValue().answer

@@ -4,8 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LocalStorageService {
-  constructor() {}
-
   pushArrayToStorage<T>(array: T[], name: string) {
     localStorage.setItem(name, JSON.stringify(array));
   }

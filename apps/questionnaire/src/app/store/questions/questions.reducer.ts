@@ -11,17 +11,11 @@ import {
   recreateQuestionsFromSource,
   rollBackQuestion,
 } from './questions.actions';
-import { inject } from '@angular/core';
-import { LocalStorageService } from '../../services/local-storage.service';
-
-
 
 export const questionsReducer = createReducer(
   appState,
   on(createQuestion, (state, { question }) => {
-    console.log('creating');
-    
-    
+    console.log('creating'); //
     return {
       ...state,
       questions: [...state.questions, question],
@@ -47,26 +41,26 @@ export const questionsReducer = createReducer(
       questions: filteredQuestions,
     };
   }),
-  on(rollBackQuestion, (state, {questionId})=>{
-    const newQuestions = state.questions.map(q=>{
-      if(q.id===questionId){
-        return{
+  on(rollBackQuestion, (state, { questionId }) => {
+    const newQuestions = state.questions.map((q) => {
+      if (q.id === questionId) {
+        return {
           ...q,
-          answered:false
-        }
+          answered: false,
+        };
       }
-      return q
-    })
-    return{
+      return q;
+    });
+    return {
       ...state,
-      questions:newQuestions
-    }
+      questions: newQuestions,
+    };
   }),
   on(checkQuestionOneAnswer, (state, { questionId, answerId }) => {
     const newQuestions = state.questions.map((q) => {
-      if (q.id === questionId) {//this is the question we are looking for
+      if (q.id === questionId) {
         for (let a of q.answers) {
-          if (a.id === answerId && a.correct === true) {//if answer of answerId is correct
+          if (a.id === answerId && a.correct === true) {
             console.log('checking');
             return {
               ...q,
@@ -82,53 +76,51 @@ export const questionsReducer = createReducer(
       questions: newQuestions,
     };
   }),
-  on(checkQuestionOpenAnswer,(state,{questionId, answerText})=>{
-    const newQuestions = state.questions.map((q)=>{
-      if(q.id === questionId){
-        for(let a of q.answers){
-          if(a.text.toUpperCase()==answerText.toUpperCase()){
+  on(checkQuestionOpenAnswer, (state, { questionId, answerText }) => {
+    const newQuestions = state.questions.map((q) => {
+      if (q.id === questionId) {
+        for (let a of q.answers) {
+          if (a.text.toUpperCase() == answerText.toUpperCase()) {
             return {
               ...q,
-              answered:true
-            }
+              answered: true,
+            };
           }
         }
       }
-      return q
-    })
-    return{
-      ...state,
-      questions:newQuestions
-    }
-  }),
-  on(checkQuestionManyAnswers, (state,{questionId, answerIdsArray})=>{
-    const newQuestions = state.questions.map((q)=>{
-      if(q.id === questionId){
-        for(let i in answerIdsArray){
-          if(answerIdsArray[i].correct !== q.answers[i].correct){
-            return q
-          }
-          
-        }
-      }
-      return{
-        ...q,
-        answered:true
-      }
-    })
+      return q;
+    });
     return {
       ...state,
-      questions:newQuestions
-    }
+      questions: newQuestions,
+    };
   }),
-  on(recreateQuestionsFromSource, state=>{
-    return state
-  }),
-  on(loadQuestions,(state,{questions})=>{
-
-    return{
+  on(checkQuestionManyAnswers, (state, { questionId, answerIdsArray }) => {
+    const newQuestions = state.questions.map((q) => {
+      if (q.id === questionId) {
+        for (let i in answerIdsArray) {
+          if (answerIdsArray[i].correct !== q.answers[i].correct) {
+            return q;
+          }
+        }
+      }
+      return {
+        ...q,
+        answered: true,
+      };
+    });
+    return {
       ...state,
-      questions:questions
-    }
+      questions: newQuestions,
+    };
+  }),
+  on(recreateQuestionsFromSource, (state) => {
+    return state;
+  }),
+  on(loadQuestions, (state, { questions }) => {
+    return {
+      ...state,
+      questions: questions,
+    };
   })
 );

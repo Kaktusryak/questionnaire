@@ -25,14 +25,13 @@ export class OneAnswerFormComponent {
     this.oneAnswerForm = this.fb.group({
       oneAnswer: new FormControl({value:'', disabled:true}, Validators.required)
     })
-    console.log('inside question')
-    console.log(this.answers)
+    console.log('inside question')//
+    console.log(this.answers)//
     
   }
 
   handleSubmit(){
-    console.log('ONE')
-    
+    console.log('ONE')//
     this.rollBackEvent.emit();
   }
 }

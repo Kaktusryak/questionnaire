@@ -15,7 +15,6 @@ export class QuestionEffects {
     private store: Store
   ) {}
 
-  // Effect to save state changes to local storage when a question is created or edited
   saveQuestionToLocalStorage$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -29,8 +28,7 @@ export class QuestionEffects {
           QuestionActions.rollBackQuestion
         ),
         tap(() => {
-          // Get the current state from your store and save it to local storage
-          console.log('effect works');
+          console.log('effect works'); //
           let data: QuestionInterface[] = [];
           const currentState = this.store
             .pipe(select(selectAllQuestions))
@@ -40,24 +38,22 @@ export class QuestionEffects {
           this.localStorageService.pushArrayToStorage(data, 'questions');
         })
       ),
-    { dispatch: false } // We're not dispatching any additional actions here
+    { dispatch: false }
   );
 
-  // Optionally, you can define an effect to load initial state from local storage
-  loadQuestionsFromLocalStorage$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(QuestionActions.recreateQuestionsFromSource),
-      tap(() => {
-        // Load the data from local storage and dispatch appropriate actions
-        const questions: QuestionInterface[] =
-          this.localStorageService.getArrayFromStorage('questions');
-        // Dispatch action to update store with loaded data
-        console.log('loading');
-        this.store.dispatch(
-          QuestionActions.loadQuestions({ questions: questions })
-        );
-        // For example: dispatch(QuestionActions.loadQuestions({ questions }));
-      })
-    )
+  loadQuestionsFromLocalStorage$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(QuestionActions.recreateQuestionsFromSource),
+        tap(() => {
+          const questions: QuestionInterface[] =
+            this.localStorageService.getArrayFromStorage('questions');
+          console.log('loading');
+          this.store.dispatch(
+            QuestionActions.loadQuestions({ questions: questions })
+          );
+        })
+      ),
+    { dispatch: false }
   );
 }
