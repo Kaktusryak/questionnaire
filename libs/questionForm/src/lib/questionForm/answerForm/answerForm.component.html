@@ -1,6 +1,6 @@
 
-<form class="answer-form" action="" [formGroup]="answerForm" (ngSubmit)="onAddAnswer()">
-    <input  type="text" class="form-control"  id="text" formControlName="text"  />
+<form class="answer-form" action="" [formGroup]="answerForm" (ngSubmit)="onAddAnswer()" >
+    <input  type="text" class="form-control"  id="text" formControlName="text"   />
     <input  type="checkbox" class="form-control" id="correct" formControlName="correct"/>
     <button type="submit"> {{buttonText}}</button>
     <button *ngIf="isChange" class="delete" type="button" (click)="onDeleteAnswer()">Delete</button>

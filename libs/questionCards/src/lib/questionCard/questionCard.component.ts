@@ -21,12 +21,6 @@ export class QuestionCardComponent {
 
   router = inject(Router)
 
-  ngOnInit(){
-    if(this.dateString.length===24){
-      this.dateString=this.dateString.substring(0,10)
-    }
-  }
-
   handleEdit(){
     this.onEdit(this.id)
   }

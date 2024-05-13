@@ -72,7 +72,7 @@
     "@nx/angular:application": {
       "e2eTestRunner": "cypress",
       "linter": "eslint",
-      "style": "css",
+      "style": "scss",
       "unitTestRunner": "jest"
     },
     "@nx/angular:library": {
@@ -80,7 +80,7 @@
       "unitTestRunner": "jest"
     },
     "@nx/angular:component": {
-      "style": "css"
+      "style": "scss"
     }
   },
   "nxCloudAccessToken": "ZmQ4ODM1NmItODI3ZS00MTJiLWEwMTctOTBiNmY3YTIzZTdhfHJlYWQtd3JpdGU="

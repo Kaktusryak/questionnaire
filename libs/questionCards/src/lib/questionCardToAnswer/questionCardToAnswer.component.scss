@@ -10,4 +10,9 @@
         font-size: larger;
         margin-bottom: 1rem;
     }
+    @media (max-width:950px) {
+        width: 40vw;
+        height: fit-content;
+    }
+
 }

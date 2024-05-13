@@ -4,6 +4,10 @@
     justify-content: space-between;
     width: 35rem;
 
+    @media (max-width:600px) {
+        width: 80vw;
+    }
+
 
     .form-control {
         height: 35px;

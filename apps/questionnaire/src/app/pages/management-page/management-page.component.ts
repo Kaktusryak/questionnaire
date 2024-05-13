@@ -8,14 +8,14 @@ import { Router } from '@angular/router';
 import { deleteQuestion } from '../../store/questions/questions.actions';
 import { QuestionInterface } from '@angular-monorepo/questionCard';
 
-import { DatePipePipe } from '@angular-monorepo/pipes';
+import { DateToYMD } from '@angular-monorepo/pipes';
 
 import { LocalStorageService } from '@angular-monorepo/localStorage';
 
 @Component({
   selector: 'app-management-page',
   standalone: true,
-  imports: [CommonModule, QuestionCardComponent, DatePipePipe],
+  imports: [CommonModule, QuestionCardComponent, DateToYMD],
   templateUrl: './management-page.component.html',
   styleUrl: './management-page.component.scss',
 })

@@ -1,1 +1,1 @@
-export * from './lib/pipes/date-pipe.pipe';
+export * from './lib/pipes/dateToYMD.pipe';

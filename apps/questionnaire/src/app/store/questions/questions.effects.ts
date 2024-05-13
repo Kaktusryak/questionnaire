@@ -36,6 +36,7 @@ export class QuestionEffects {
               data = q;
             });
           this.localStorageService.pushArrayToStorage(data, 'questions');
+          currentState.unsubscribe()
         })
       ),
     { dispatch: false }

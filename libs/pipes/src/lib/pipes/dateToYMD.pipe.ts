@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'datePipe',
   standalone: true
 })
-export class DatePipePipe implements PipeTransform {
+export class DateToYMD implements PipeTransform {
 
   transform(value: Date): string {
     const date = new Date(value)
