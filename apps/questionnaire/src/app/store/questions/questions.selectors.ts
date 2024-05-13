@@ -1,7 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AppStoreInterface } from '../app.state';
 
-
 export const selectFeature =
   createFeatureSelector<AppStoreInterface>('questions');
 
@@ -22,3 +21,7 @@ export const selectAnsweredQuestions = createSelector(
     state.questions.filter((q) => q.answered === true)
 );
 
+export const selectQuestionById = (questionId: string) =>
+  createSelector(selectFeature, (state: AppStoreInterface) =>
+    state.questions.find((q) => q.id === questionId)
+  );

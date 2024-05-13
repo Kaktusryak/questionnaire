@@ -8,6 +8,7 @@ import { QuestionFormComponent } from '@angular-monorepo/questionForm';
 
 import { Observable, Subscription, filter } from 'rxjs';
 import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.model';
+import { selectQuestionById } from '../../store/questions/questions.selectors';
 
 
 @Component({
@@ -38,11 +39,8 @@ export class EditPageComponent {
   ngOnInit(): void {
     
     const id = this.route.snapshot.paramMap.get('id') || '';
-    this.store.select('questions').subscribe(d=>{
-      this.questions = d.questions
-      this.question = this.questions.find(q=>q.id==id)  || this.alertQuestion
-      this.question = {...this.question,answers:this.question.answers}
-      console.log(this.question)
+    this.store.pipe(select(selectQuestionById(id))).subscribe(q=>{
+      this.question = q || this.alertQuestion
     })
   }
 
