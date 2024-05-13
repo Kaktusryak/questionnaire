@@ -23,7 +23,13 @@
         border-radius: 30px;
         font-size: large;
         font-weight: 800;
+        cursor: pointer;
 
+    }
+    .delete{
+        background-color: darkred;
+        margin-left: 10px;
+        cursor: pointer;
     }
 
 }

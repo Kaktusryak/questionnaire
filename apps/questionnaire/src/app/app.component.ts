@@ -2,7 +2,9 @@ import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { loadQuestions, recreateQuestionsFromSource } from './store/questions/questions.actions';
-import { LocalStorageService } from './services/local-storage.service';
+import { LocalStorageService } from 'libs/localStorage/src/lib/local-storage.service'
+
+
 
 @Component({
   standalone: true,

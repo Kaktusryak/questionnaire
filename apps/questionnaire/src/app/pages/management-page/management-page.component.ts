@@ -8,17 +8,21 @@ import { selectAllQuestions } from '../../store/questions/questions.selectors';
 import { Router } from '@angular/router';
 import { deleteQuestion } from '../../store/questions/questions.actions';
 import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.model';
+import { TestComponent } from 'libs/localStorage/src/lib/test/test.component';
+import { LocalStorageService } from 'libs/localStorage/src/lib/local-storage.service';
+import { LocalStorageComponent } from 'libs/localStorage/src/index'
 
 @Component({
   selector: 'app-management-page',
   standalone: true,
-  imports: [CommonModule, QuestionCardComponent],
+  imports: [CommonModule, QuestionCardComponent, TestComponent, LocalStorageComponent],
   templateUrl: './management-page.component.html',
   styleUrl: './management-page.component.scss',
 })
 export class ManagementPageComponent {
   store = inject(Store);
   router = inject(Router);
+  LSS = inject(LocalStorageService);
 
   subscription$?: Subscription;
   subscription2$?: Subscription;
