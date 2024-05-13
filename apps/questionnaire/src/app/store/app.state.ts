@@ -1,4 +1,4 @@
-import { QuestionInterface } from "libs/questionCards/src/lib/models/question.model"
+import { QuestionInterface } from '@angular-monorepo/questionCard';
 
 export interface AppStoreInterface{
     questions:QuestionInterface[]

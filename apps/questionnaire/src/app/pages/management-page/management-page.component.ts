@@ -2,16 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-
 import { QuestionCardComponent } from '@angular-monorepo/questionCard';
 import { selectAllQuestions } from '../../store/questions/questions.selectors';
 import { Router } from '@angular/router';
 import { deleteQuestion } from '../../store/questions/questions.actions';
-import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.model';
+import { QuestionInterface } from '@angular-monorepo/questionCard';
 
-import { LocalStorageService } from 'libs/localStorage/src/lib/local-storage.service';
-import { DatePipePipe } from 'libs/pipes/src/index';
+import { DatePipePipe } from '@angular-monorepo/pipes';
 
+import { LocalStorageService } from '@angular-monorepo/localStorage';
 
 @Component({
   selector: 'app-management-page',

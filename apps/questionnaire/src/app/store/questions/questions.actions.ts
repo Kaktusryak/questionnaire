@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.model';
+import { QuestionInterface } from '@angular-monorepo/questionCard';
 
 export const createQuestion = createAction(
   '[Question] Create',

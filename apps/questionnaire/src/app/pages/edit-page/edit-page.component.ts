@@ -1,16 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-
-import {
-  createQuestion,
-  editQuestion,
-} from '../../store/questions/questions.actions';
-
+import { editQuestion } from '../../store/questions/questions.actions';
 import { QuestionFormComponent } from '@angular-monorepo/questionForm';
-
-import { Observable, Subscription, filter } from 'rxjs';
-import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.model';
+import { QuestionInterface } from '@angular-monorepo/questionCard';
 import { selectQuestionById } from '../../store/questions/questions.selectors';
 
 @Component({

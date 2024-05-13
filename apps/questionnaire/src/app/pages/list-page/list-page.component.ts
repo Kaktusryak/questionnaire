@@ -3,12 +3,9 @@ import {
   QuestionCardAnsweredComponent,
   QuestionCardToAnswerComponent,
 } from '@angular-monorepo/questionCard';
-
 import { Store, select } from '@ngrx/store';
-
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import {
-  selectAllQuestions,
   selectAnsweredQuestions,
   selectToAnswerQuestions,
 } from '../../store/questions/questions.selectors';
@@ -19,7 +16,7 @@ import {
   checkQuestionOpenAnswer,
   rollBackQuestion,
 } from '../../store/questions/questions.actions';
-import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.model';
+import { QuestionInterface } from '@angular-monorepo/questionCard';
 
 @Component({
   selector: 'app-list-page',

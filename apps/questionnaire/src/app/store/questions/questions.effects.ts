@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 import * as QuestionActions from './questions.actions'; // Import your action creators
-import { LocalStorageService } from 'libs/localStorage/src/lib/local-storage.service';
+import { LocalStorageService } from '@angular-monorepo/localStorage';
 import { Store, select } from '@ngrx/store';
 import { selectAllQuestions } from './questions.selectors';
-import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.model';
+import { QuestionInterface } from '@angular-monorepo/questionCard';
 
 @Injectable()
 export class QuestionEffects {
