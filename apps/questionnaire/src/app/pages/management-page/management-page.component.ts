@@ -3,7 +3,6 @@ import { Component, inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 
-
 import { QuestionCardComponent } from '@angular-monorepo/questionCard';
 import { selectAllQuestions } from '../../store/questions/questions.selectors';
 import { Router } from '@angular/router';
@@ -26,15 +25,13 @@ export class ManagementPageComponent {
     // this.questions$=this.store.select(selectAllQuestions)//selector is not working ?????
   }
 
-  subscription$? : Subscription
-  subscription2$? : Subscription
+  subscription$?: Subscription;
+  subscription2$?: Subscription;
 
   questions: QuestionInterface[] = [];
 
   questions$?: Observable<any>;
   data$?: Observable<QuestionInterface[]>;
-
-  
 
   ngOnInit() {
     this.subscription$ = this.store.select('questions').subscribe((d) => {
@@ -44,15 +41,14 @@ export class ManagementPageComponent {
     this.questions$ = this.store.pipe(select(selectAllQuestions));
   }
 
-  navigateToEditPage(questionId:string) {
-    this.router.navigateByUrl('/edit/' + questionId)
+  navigateToEditPage(questionId: string) {
+    this.router.navigateByUrl('/edit/' + questionId);
   }
-  handleDelete(questionId:string){
-    this.store.dispatch(deleteQuestion({id:questionId}))
+  handleDelete(questionId: string) {
+    this.store.dispatch(deleteQuestion({ id: questionId }));
   }
 
-  ngOnDestroy(){
-    this.subscription$?.unsubscribe()
-
+  ngOnDestroy() {
+    this.subscription$?.unsubscribe();
   }
 }

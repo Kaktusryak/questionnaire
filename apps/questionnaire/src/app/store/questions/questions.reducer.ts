@@ -7,8 +7,12 @@ import {
   createQuestion,
   deleteQuestion,
   editQuestion,
+  loadQuestions,
+  recreateQuestionsFromSource,
   rollBackQuestion,
 } from './questions.actions';
+import { inject } from '@angular/core';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 
 
@@ -16,6 +20,8 @@ export const questionsReducer = createReducer(
   appState,
   on(createQuestion, (state, { question }) => {
     console.log('creating');
+    
+    
     return {
       ...state,
       questions: [...state.questions, question],
@@ -113,6 +119,16 @@ export const questionsReducer = createReducer(
     return {
       ...state,
       questions:newQuestions
+    }
+  }),
+  on(recreateQuestionsFromSource, state=>{
+    return state
+  }),
+  on(loadQuestions,(state,{questions})=>{
+
+    return{
+      ...state,
+      questions:questions
     }
   })
 );

@@ -1,5 +1,5 @@
 <div class="container">
-    <lib-question-card *ngFor="let q of questions" [text]="q.text" [date]="q.date" [type]="q.type" [id]="q.id"
+    <lib-question-card *ngFor="let q of questions" [text]="q.text" [dateString]="q.date.toString()" [type]="q.type" [id]="q.id"
         [onEdit]="navigateToEditPage" (deleteEvent)="handleDelete($event)">
     </lib-question-card>
 </div>

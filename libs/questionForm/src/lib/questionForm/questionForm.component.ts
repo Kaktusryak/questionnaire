@@ -84,7 +84,7 @@ export class QuestionFormComponent {
         id: this.editedQuestion.id,
         text: this.questionForm.getRawValue().text || '',
         type: this.questionForm.getRawValue().typeControl || 'one',
-        date: this.editedQuestion.date,
+        date: this.editedQuestion.date,//save default date
         answers: this.editedQuestion.answers,
         answered: this.editedQuestion.answered,
       };

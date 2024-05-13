@@ -12,7 +12,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class QuestionCardComponent {
   @Input() text : string = '';
-  @Input() date : Date = new Date()
+  @Input() dateString : string = ''
   @Input() type : string = ''
   @Input() id : string = ''
   @Input() onEdit! : (questionId:string) => void
@@ -20,6 +20,8 @@ export class QuestionCardComponent {
   @Output() deleteEvent = new EventEmitter()
 
   router = inject(Router)
+
+  
 
   handleEdit(){
     this.onEdit(this.id)

@@ -1,5 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { QuestionCardAnsweredComponent, QuestionCardToAnswerComponent } from '@angular-monorepo/questionCard';
+import {
+  QuestionCardAnsweredComponent,
+  QuestionCardToAnswerComponent,
+} from '@angular-monorepo/questionCard';
 
 import { Store, select } from '@ngrx/store';
 
@@ -21,7 +24,11 @@ import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.mo
 @Component({
   selector: 'app-list-page',
   standalone: true,
-  imports: [QuestionCardToAnswerComponent, CommonModule, QuestionCardAnsweredComponent],
+  imports: [
+    QuestionCardToAnswerComponent,
+    CommonModule,
+    QuestionCardAnsweredComponent,
+  ],
   templateUrl: './list-page.component.html',
   styleUrl: './list-page.component.scss',
 })
@@ -81,9 +88,9 @@ export class ListPageComponent {
       })
     );
   }
-  handleRollBack(questionId:string){
-    console.log('works '+ questionId)
-    this.store.dispatch(rollBackQuestion({questionId:questionId}))
+  handleRollBack(questionId: string) {
+    console.log('works ' + questionId);
+    this.store.dispatch(rollBackQuestion({ questionId: questionId }));
   }
 
   ngOnDestroy() {
