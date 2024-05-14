@@ -11,11 +11,13 @@ import {
   QuestionInterface,
 } from '../../../../questionCards/src/lib/models/question.model';
 import { AnswerFormComponent } from './answerForm/answerForm.component';
+import { TextInputComponent } from '@angular-monorepo/inputs';
+
 
 @Component({
   selector: 'lib-question-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, AnswerFormComponent],
+  imports: [CommonModule, ReactiveFormsModule, AnswerFormComponent, TextInputComponent],
   templateUrl: './questionForm.component.html',
   styleUrl: './questionForm.component.scss',
 })
@@ -50,12 +52,15 @@ export class QuestionFormComponent {
     });
   }
 
+  getTextFormControl(): FormControl {
+    return this.questionForm.get('text') as FormControl;
+  }
+
   onAddAnswer(newAnswer: AnswerInterface) {
     this.editedQuestion = {
       ...this.editedQuestion,
       answers: [...this.editedQuestion.answers, newAnswer],
     };
-    console.log(this.editedQuestion.answers);
   }
 
   onDeleteAnswer(answerId: string) {
@@ -74,9 +79,9 @@ export class QuestionFormComponent {
         return ans;
       }
     });
-    console.log('qF');//
-    console.log(this.editedQuestion.answers);//
   }
+
+  onTextChange(newText:string){}
 
   onAddQuestion() {
     if (!this.questionForm.invalid) {

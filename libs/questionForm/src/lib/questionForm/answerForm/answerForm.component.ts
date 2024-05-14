@@ -46,9 +46,7 @@ export class AnswerFormComponent {
           text: this.answerForm.getRawValue().text || '',
           correct: this.answerForm.getRawValue().correct || false,
         };
-        console.log('adding');//
         this.newItemEvent.emit(answer); 
-        console.log(answer);//
       } else {
         const answer: AnswerInterface = {
           id: this.id,
@@ -56,7 +54,6 @@ export class AnswerFormComponent {
           correct: this.answerForm.getRawValue().correct || false,
         };
         this.newItemEvent.emit(answer);
-        console.log(answer);//
       }
     }else{
       alert('Invalid answer')

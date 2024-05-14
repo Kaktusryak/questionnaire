@@ -29,17 +29,7 @@ export class QuestionCardAnsweredComponent {
 
   @Output() rollBackEvent = new EventEmitter<string>();
 
-  ngOnInit() {
-    console.log('inside question');//
-    console.log(this.question);//
-  }
-
-  handleClickTest() {
-    console.log('Submit answers');//
-  }
-
   handleRollBack() {
-    console.log('got it');//
     this.rollBackEvent.emit(this.question.id);
   }
 }

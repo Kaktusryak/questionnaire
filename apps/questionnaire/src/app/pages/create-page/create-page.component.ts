@@ -17,8 +17,6 @@ export class CreatePageComponent {
   router = inject(Router);
 
   onAddQuestion(question: QuestionInterface) {
-    console.log('Home:'); //
-    console.log(question); //
     this.store.dispatch(createQuestion({ question: question }));
     this.router.navigateByUrl('');
   }

@@ -1,6 +1,7 @@
 <div class="form-container">
     <form action="" [formGroup]="questionForm" (ngSubmit)="onAddQuestion()">
-        <input type="text" class="form-control" id="text" formControlName="text" placeholder="Question text" />
+        <text-input [formControl]="getTextFormControl()" [placeholder]="'hello'"></text-input>
+        <!-- <input type="text" class="form-control" id="text" formControlName="text" placeholder="Question text" /> -->
         <div class="form-radios">
             <div>
                 <input  type="radio" name="typeControl" formControlName="typeControl" value="one" id="one"><label

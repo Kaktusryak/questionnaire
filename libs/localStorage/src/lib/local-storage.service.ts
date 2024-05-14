@@ -11,8 +11,6 @@ export class LocalStorageService {
   getArrayFromStorage<T>(name: string): T {
     const arrayString = localStorage.getItem(name);
     const array = JSON.parse(arrayString || '[]');
-    console.log('service');
-    console.log(array);
     return array;
   }
 }

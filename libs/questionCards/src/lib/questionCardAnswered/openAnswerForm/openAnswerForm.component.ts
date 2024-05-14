@@ -15,13 +15,7 @@ export class OpenAnswerFormComponent {
 
   @Output() rollBackEvent = new EventEmitter<string>();
 
-  ngOnInit() {
-    console.log('inside question');//
-    console.log(this.answers);//
-  }
-
   handleSubmit() {
-    console.log('OPEN');//
     this.rollBackEvent.emit();
   }
 }

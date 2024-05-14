@@ -25,13 +25,9 @@ export class OneAnswerFormComponent {
     this.oneAnswerForm = this.fb.group({
       oneAnswer: new FormControl('', Validators.required),
     })
-    console.log('inside question')//
-    console.log(this.answers)//
   }
 
   handleSubmit(){
-    console.log('ONE')//
-    console.log(this.oneAnswerForm.getRawValue())//
     const answer =
       this.oneAnswerForm.getRawValue().oneAnswer !== null
         ? this.oneAnswerForm.getRawValue().oneAnswer

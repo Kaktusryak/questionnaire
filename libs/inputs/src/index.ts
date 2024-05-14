@@ -1,1 +1,1 @@
-export * from './lib/inputs';
+export * from './lib/text-input/text-input.component';

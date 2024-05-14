@@ -42,17 +42,13 @@ export class ListPageComponent {
     this.questionsToAnswerSubscription$ = this.store
       .pipe(select(selectToAnswerQuestions))
       .subscribe((questions) => {
-        console.log('selector to answer'); //
         this.questionsToAnswer = questions;
-        console.log(questions); //
       });
 
     this.questionsAnsweredSubscription$ = this.store
       .pipe(select(selectAnsweredQuestions))
       .subscribe((questions) => {
-        console.log('selector answered'); //
         this.questionsAnswered = questions;
-        console.log(questions); //
       });
   }
 
@@ -62,8 +58,6 @@ export class ListPageComponent {
   }
 
   handleCheckOneAnswer(questionAnswerPair: any) {
-    console.log('we are in list '); //
-    console.log(questionAnswerPair); //
     this.store.dispatch(
       checkQuestionOneAnswer({
         questionId: questionAnswerPair.questionId,
@@ -73,8 +67,6 @@ export class ListPageComponent {
   }
 
   handleCheckOpenAnswer(questionAnswerPair: any) {
-    console.log('we are in list '); //
-    console.log(questionAnswerPair); //
     this.store.dispatch(
       checkQuestionOpenAnswer({
         questionId: questionAnswerPair.questionId,
@@ -84,8 +76,6 @@ export class ListPageComponent {
   }
 
   handleCheckManyAnswers(questionAnswersPair: any) {
-    console.log('we are in list '); //
-    console.log(questionAnswersPair); //
     this.store.dispatch(
       checkQuestionManyAnswers({
         questionId: questionAnswersPair.questionId,
@@ -95,7 +85,6 @@ export class ListPageComponent {
   }
 
   handleRollBack(questionId: string) {
-    console.log('works ' + questionId); //
     this.store.dispatch(rollBackQuestion({ questionId: questionId }));
   }
 

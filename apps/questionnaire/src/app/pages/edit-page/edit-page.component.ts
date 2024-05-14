@@ -47,8 +47,6 @@ export class EditPageComponent {
   }
 
   onChangeQuestion(question: QuestionInterface) {
-    console.log('changed'); //
-    console.log(question); //
     this.store.dispatch(editQuestion({ question: question }));
     this.router.navigateByUrl('');
   }

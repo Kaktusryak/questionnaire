@@ -28,7 +28,6 @@ export class QuestionEffects {
           QuestionActions.rollBackQuestion
         ),
         tap(() => {
-          console.log('effect works'); //
           let data: QuestionInterface[] = [];
           const currentState = this.store
             .pipe(select(selectAllQuestions))
@@ -49,7 +48,6 @@ export class QuestionEffects {
         tap(() => {
           const questions: QuestionInterface[] =
             this.localStorageService.getArrayFromStorage('questions');
-          console.log('loading');//
           this.store.dispatch(
             QuestionActions.loadQuestions({ questions: questions })
           );

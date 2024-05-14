@@ -15,7 +15,6 @@ import {
 export const questionsReducer = createReducer(
   appState,
   on(createQuestion, (state, { question }) => {
-    console.log('creating'); //
     return {
       ...state,
       questions: [...state.questions, question],
@@ -61,7 +60,6 @@ export const questionsReducer = createReducer(
       if (question.id === questionId) {
         for (let a of question.answers) {
           if (a.id === answerId && a.correct === true) {
-            console.log('checking');
             return {
               ...question,
               answered: true,
