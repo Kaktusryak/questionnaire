@@ -41,19 +41,24 @@ export class ListPageComponent {
   ngOnInit() {
     this.questionsToAnswerSubscription$ = this.store
       .pipe(select(selectToAnswerQuestions))
-      .subscribe((d) => {
+      .subscribe((questions) => {
         console.log('selector to answer'); //
-        this.questionsToAnswer = d;
-        console.log(d); //
+        this.questionsToAnswer = questions;
+        console.log(questions); //
       });
 
     this.questionsAnsweredSubscription$ = this.store
       .pipe(select(selectAnsweredQuestions))
-      .subscribe((d) => {
+      .subscribe((questions) => {
         console.log('selector answered'); //
-        this.questionsAnswered = d;
-        console.log(d); //
+        this.questionsAnswered = questions;
+        console.log(questions); //
       });
+  }
+
+  ngOnDestroy() {
+    this.questionsToAnswerSubscription$?.unsubscribe();
+    this.questionsAnsweredSubscription$?.unsubscribe();
   }
 
   handleCheckOneAnswer(questionAnswerPair: any) {
@@ -94,8 +99,5 @@ export class ListPageComponent {
     this.store.dispatch(rollBackQuestion({ questionId: questionId }));
   }
 
-  ngOnDestroy() {
-    this.questionsToAnswerSubscription$?.unsubscribe();
-    this.questionsAnsweredSubscription$?.unsubscribe();
-  }
+  
 }

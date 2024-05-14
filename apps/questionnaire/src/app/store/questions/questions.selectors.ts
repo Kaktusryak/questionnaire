@@ -12,16 +12,16 @@ export const selectAllQuestions = createSelector(
 export const selectToAnswerQuestions = createSelector(
   selectFeature,
   (state: AppStoreInterface) =>
-    state.questions.filter((q) => q.answered === false)
+    state.questions.filter((question) => question.answered === false)
 );
 
 export const selectAnsweredQuestions = createSelector(
   selectFeature,
   (state: AppStoreInterface) =>
-    state.questions.filter((q) => q.answered === true)
+    state.questions.filter((question) => question.answered === true)
 );
 
 export const selectQuestionById = (questionId: string) =>
   createSelector(selectFeature, (state: AppStoreInterface) =>
-    state.questions.find((q) => q.id === questionId)
+    state.questions.find((question) => question.id === questionId)
   );

@@ -22,7 +22,7 @@ export class EditPageComponent {
   questions: QuestionInterface[] = [];
   question!: QuestionInterface;
 
-  subscription$!:Subscription
+  subscription$!: Subscription;
 
   alertQuestion: QuestionInterface = {
     id: '',
@@ -35,19 +35,23 @@ export class EditPageComponent {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id') || '';
-    this.subscription$ =  this.store.pipe(select(selectQuestionById(id))).subscribe((q) => {
-      this.question = q || this.alertQuestion;
-    });
+    this.subscription$ = this.store
+      .pipe(select(selectQuestionById(id)))
+      .subscribe((question) => {
+        this.question = question || this.alertQuestion;
+      });
+  }
+
+  ngOnDestroy() {
+    this.subscription$.unsubscribe();
   }
 
   onChangeQuestion(question: QuestionInterface) {
-    console.log('changed');
-    console.log(question);
+    console.log('changed'); //
+    console.log(question); //
     this.store.dispatch(editQuestion({ question: question }));
     this.router.navigateByUrl('');
   }
 
-  ngOnDestroy(){
-    this.subscription$.unsubscribe()
-  }
+  
 }

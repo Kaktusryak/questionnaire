@@ -10,5 +10,6 @@ export const appRoutes: Route[] = [
     {path:'create',component:CreatePageComponent},
     {path:'edit/:id',component:EditPageComponent},
     {path:'manage',component:ManagementPageComponent},
-    {path:'list',component:ListPageComponent}
+    {path:'list',component:ListPageComponent},
+    {path:'**', redirectTo:'manage', pathMatch:'full'} 
 ];

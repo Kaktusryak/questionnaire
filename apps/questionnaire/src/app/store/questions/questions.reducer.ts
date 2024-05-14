@@ -35,21 +35,21 @@ export const questionsReducer = createReducer(
     };
   }),
   on(deleteQuestion, (state, { id }) => {
-    const filteredQuestions = state.questions.filter((q) => q.id !== id);
+    const filteredQuestions = state.questions.filter((question) => question.id !== id);
     return {
       ...state,
       questions: filteredQuestions,
     };
   }),
   on(rollBackQuestion, (state, { questionId }) => {
-    const newQuestions = state.questions.map((q) => {
-      if (q.id === questionId) {
+    const newQuestions = state.questions.map((question) => {
+      if (question.id === questionId) {
         return {
-          ...q,
+          ...question,
           answered: false,
         };
       }
-      return q;
+      return question;
     });
     return {
       ...state,
@@ -57,19 +57,19 @@ export const questionsReducer = createReducer(
     };
   }),
   on(checkQuestionOneAnswer, (state, { questionId, answerId }) => {
-    const newQuestions = state.questions.map((q) => {
-      if (q.id === questionId) {
-        for (let a of q.answers) {
+    const newQuestions = state.questions.map((question) => {
+      if (question.id === questionId) {
+        for (let a of question.answers) {
           if (a.id === answerId && a.correct === true) {
             console.log('checking');
             return {
-              ...q,
+              ...question,
               answered: true,
             };
           }
         }
       }
-      return q;
+      return question;
     });
     return {
       ...state,
@@ -77,18 +77,18 @@ export const questionsReducer = createReducer(
     };
   }),
   on(checkQuestionOpenAnswer, (state, { questionId, answerText }) => {
-    const newQuestions = state.questions.map((q) => {
-      if (q.id === questionId) {
-        for (let a of q.answers) {
+    const newQuestions = state.questions.map((question) => {
+      if (question.id === questionId) {
+        for (let a of question.answers) {
           if (a.text.toUpperCase() == answerText.toUpperCase()) {
             return {
-              ...q,
+              ...question,
               answered: true,
             };
           }
         }
       }
-      return q;
+      return question;
     });
     return {
       ...state,
@@ -96,16 +96,16 @@ export const questionsReducer = createReducer(
     };
   }),
   on(checkQuestionManyAnswers, (state, { questionId, answerIdsArray }) => {
-    const newQuestions = state.questions.map((q) => {
-      if (q.id === questionId) {
+    const newQuestions = state.questions.map((question) => {
+      if (question.id === questionId) {
         for (let i in answerIdsArray) {
-          if (answerIdsArray[i].correct !== q.answers[i].correct) {
-            return q;
+          if (answerIdsArray[i].correct !== question.answers[i].correct) {
+            return question;
           }
         }
       }
       return {
-        ...q,
+        ...question,
         answered: true,
       };
     });

@@ -32,8 +32,8 @@ export class QuestionEffects {
           let data: QuestionInterface[] = [];
           const currentState = this.store
             .pipe(select(selectAllQuestions))
-            .subscribe((q) => {
-              data = q;
+            .subscribe((questions) => {
+              data = questions;
             });
           this.localStorageService.pushArrayToStorage(data, 'questions');
           currentState.unsubscribe()
@@ -49,7 +49,7 @@ export class QuestionEffects {
         tap(() => {
           const questions: QuestionInterface[] =
             this.localStorageService.getArrayFromStorage('questions');
-          console.log('loading');
+          console.log('loading');//
           this.store.dispatch(
             QuestionActions.loadQuestions({ questions: questions })
           );

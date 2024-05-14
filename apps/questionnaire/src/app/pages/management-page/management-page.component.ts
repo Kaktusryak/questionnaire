@@ -29,15 +29,16 @@ export class ManagementPageComponent {
 
   questions: QuestionInterface[] = [];
 
-  questions$?: Observable<any>;
-  data$?: Observable<QuestionInterface[]>;
-
   ngOnInit() {
     this.subscription$ = this.store
       .pipe(select(selectAllQuestions))
-      .subscribe((q) => {
-        this.questions = q;
+      .subscribe((questions) => {
+        this.questions = questions;
       });
+  }
+
+  ngOnDestroy() {
+    this.subscription$?.unsubscribe();
   }
 
   navigateToEditPage(questionId: string) {
@@ -48,7 +49,5 @@ export class ManagementPageComponent {
     this.store.dispatch(deleteQuestion({ id: questionId }));
   }
 
-  ngOnDestroy() {
-    this.subscription$?.unsubscribe();
-  }
+ 
 }
