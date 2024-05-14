@@ -1,0 +1,9 @@
+<form action="" [formGroup]="manyAnswersForm">
+    <div *ngFor="let a of answers">
+        <input type="checkbox" name="manyAnswers" [formControlName]="a.id" [checked]="a.correct" [value]="a.id"
+            [id]="a.id" /><label [ngClass]="{'correct':a.correct===true}" [htmlFor]="a.id">{{a.text}}</label>
+    </div>
+    <div class="button-div">
+        <button (click)="handleSubmit()" class="submit-button">Roll back</button>
+    </div>
+</form>

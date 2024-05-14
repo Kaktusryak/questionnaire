@@ -1,0 +1,8 @@
+<ul>
+    <li *ngFor="let a of answers">
+        <p [ngClass]="{'correct':a.correct===true}">{{a.text}}</p>
+    </li>
+    <div class="button-div">
+        <button (click)="handleSubmit()" class="submit-button">Roll back</button>
+    </div>
+</ul>

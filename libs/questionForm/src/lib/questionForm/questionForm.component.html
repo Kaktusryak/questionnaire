@@ -1,0 +1,26 @@
+<div class="form-container">
+    <form action="" [formGroup]="questionForm" (ngSubmit)="onAddQuestion()">
+        <input type="text" class="form-control" id="text" formControlName="text" placeholder="Question text" />
+        <div class="form-radios">
+            <div>
+                <input  type="radio" name="typeControl" formControlName="typeControl" value="one" id="one"><label
+                for="one">One</label>
+            </div>
+            <div>
+                <input  type="radio" name="typeControl" formControlName="typeControl" value="many" id="many"><label
+                for="one">Many</label>
+            </div>
+            <div>
+                <input type="radio" name="typeControl" formControlName="typeControl" value="open" id="open"><label
+                for="one">Open</label>
+            </div>
+        </div>
+        <div class="form-button-div">
+            <button type="submit">Submit</button>
+        </div>   
+    </form>
+    <lib-answer-form (newItemEvent)="onAddAnswer($event)"></lib-answer-form>
+    <hr>
+    <lib-answer-form *ngFor="let answer of editedQuestion.answers" (newItemEvent)="onChangeAnswer($event)" (deleteAnswerEvent)="onDeleteAnswer($event)" [text]="answer.text"
+        [id]="answer.id" [correct]="answer.correct" [isChange]="true">  </lib-answer-form>
+</div>

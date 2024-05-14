@@ -1,14 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { Store } from '@ngrx/store';
+import { loadQuestions} from './store/questions/questions.actions';
+import { LocalStorageService } from '@angular-monorepo/localStorage'
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [RouterModule],
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'questionnaire';
+  store = inject(Store)
+  LSS = inject(LocalStorageService)
+ 
+  ngOnInit(){
+    this.store.dispatch(loadQuestions({questions:this.LSS.getArrayFromStorage('questions')}))
+  }
 }

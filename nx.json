@@ -44,6 +44,11 @@
           "codeCoverage": true
         }
       }
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "plugins": [
@@ -67,8 +72,15 @@
     "@nx/angular:application": {
       "e2eTestRunner": "cypress",
       "linter": "eslint",
-      "style": "css",
+      "style": "scss",
       "unitTestRunner": "jest"
+    },
+    "@nx/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nx/angular:component": {
+      "style": "scss"
     }
   },
   "nxCloudAccessToken": "ZmQ4ODM1NmItODI3ZS00MTJiLWEwMTctOTBiNmY3YTIzZTdhfHJlYWQtd3JpdGU="
