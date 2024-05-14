@@ -1,0 +1,19 @@
+<header class="main-header py-y border-bottom">
+  <div class="container">
+    <div class="row justify-content-center py-3">
+      <div class="col-md-5 text-center">
+        <h1>Author: Denys Shulman</h1>
+      </div>
+      <div class="btn-group col-md-4"
+        *ngIf="authService.getUserData('token')!==''">
+        <button (click)="handleUnlog()" type="button" class="btn btn-danger">Unlog from
+          {{authService.getUserData('name')}}</button>
+        <button (click)="handleToDash()" type="button" class="btn btn-primary">Dashboard </button>
+        <button (click)="handleToBeauty()" type="button" class="btn btn-primary">Beauty </button>
+      </div>
+    </div>
+  </div>
+</header>
+<main class="main">
+  <router-outlet />
+</main>

@@ -1,0 +1,46 @@
+<section class="container">
+    
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h2 class="text-center pb-3">Dashboard page</h2>
+        </div>
+    </div>
+    <!-- <div class="row justify-content-center py-5">
+        <div class="col-md-5 btn-group">
+            <button (click)="onIncrement()" class="btn btn-primary">INC</button>
+            <button (click)="onDecrement()" class="btn btn-primary">DEC</button>
+            <button (click)="onReset()" class="btn btn-primary">RES</button>
+        </div>
+    </div>
+    <div class="row justify-content-center py-5">
+        <div class="col-md-5 ">
+            {{count$ | async}}
+        </div>
+    </div> -->
+    <div *ngIf="authService.getUserData('role')==='Admin'" class="row justify-content-center ">
+        <div class="col-md-6 btn-group">
+            <button class="btn btn-primary" (click)="handleAdminClick()">Admin page</button>
+        </div>
+    </div>
+
+    <!-- <div *ngIf="authService.getUserData('token')!=='' "
+        class="row justify-content-center ">
+        <div class="col-md-6">
+            <ul class="list-group">
+                <app-report *ngFor="let report of reports; index as i; first as isFirst" [id]="report.id"
+                    [name]="report.name" [active]="report.active" [users_resolved]="report.users_resolved"
+                    [image_url]="report.image_url"></app-report>
+            </ul>
+        </div>
+    </div> -->
+
+    <div *ngIf="data$|async as data" class="row justify-content-center ">
+        <div class="col-md-6">
+            <ul class="list-group">
+                <app-report *ngFor="let report of reports; index as i; first as isFirst" [id]="report.id"
+                    [name]="report.name" [active]="report.active" [users_resolved]="report.users_resolved"
+                    [image_url]="report.image_url"></app-report>
+            </ul>
+        </div>
+    </div>
+</section>

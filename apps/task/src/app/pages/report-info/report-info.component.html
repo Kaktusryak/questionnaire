@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row justify-content-center align-middle">
+        <div class="col-md-8 d-flex justify-content-between">
+            <h2>Report #: {{reportId}}</h2>
+        </div>
+    </div>
+    <div *ngIf="isLoaded;else loading" class="row justify-content-center align-middle">
+        <div class="col-md-8 d-flex justify-content-between">
+            <p>Agreeableness: {{graph.data.agreeableness}}</p>
+            <p>Drive: {{graph.data.drive}}</p>
+            <p>Luck: {{graph.data.luck}}</p>
+            <p>Openness: {{graph.data.openness}}</p>
+        </div>
+        <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>  
+    </div>
+
+
+    <ng-template #loading class="row justify-content-center align-middle">
+        <div class="col-md-8 d-flex justify-content-between">
+            Loading...
+        </div>
+        
+    </ng-template>
+</div>

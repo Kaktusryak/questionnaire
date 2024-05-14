@@ -1,0 +1,26 @@
+{
+  "name": "inputs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/inputs/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/inputs",
+        "main": "libs/inputs/src/index.ts",
+        "tsConfig": "libs/inputs/tsconfig.lib.json",
+        "assets": ["libs/inputs/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/inputs/jest.config.ts"
+      }
+    }
+  }
+}

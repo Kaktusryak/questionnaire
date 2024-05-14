@@ -1,0 +1,32 @@
+<li class="list-group-item my-2 bg-light h-auto">
+    <div class="row justify-content-center align-middle">
+        <div class="col-md-11 ">
+            <div class="row justify-content-center align-middle">
+                <div class="col-md-4 ">
+                    <p>Name: {{name}}</p>
+                </div>
+                <div class="col-md-4 ">
+                    <p>Last Name: {{lastName}}</p>
+                </div>
+                <div class="col-md-4 ">
+                    <p>Date of Birth: {{dateOfBirth}}</p>
+                </div>
+            </div>
+            <div class="row justify-content-center align-middle">
+                <div class="col-md-4">
+                    <p>Position: {{position}}</p>
+                </div>
+                <div class="col-md-4 ">
+                    <p>Role: {{role}}</p>
+                </div>
+                <div class="col-md-4 ">
+                    <p>Education: {{education}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 btn-group ">
+            <button (click)="handleDownload()" class="btn btn-warning h-auto mx-2">&#8509;</button>
+        </div>
+    </div>
+
+</li>
