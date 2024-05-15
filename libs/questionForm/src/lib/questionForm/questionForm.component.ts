@@ -11,13 +11,14 @@ import {
   QuestionInterface,
 } from '../../../../questionCards/src/lib/models/question.model';
 import { AnswerFormComponent } from './answerForm/answerForm.component';
-import { TextInputComponent } from '@angular-monorepo/inputs';
+import { ButtonSubmitComponent, CheckboxComponent, RadioButtonComponent, TextInputComponent } from '@angular-monorepo/inputs';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @Component({
   selector: 'lib-question-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, AnswerFormComponent, TextInputComponent],
+  imports: [CommonModule, ReactiveFormsModule, AnswerFormComponent, TextInputComponent, RadioButtonComponent, MatRadioModule, ButtonSubmitComponent],
   templateUrl: './questionForm.component.html',
   styleUrl: './questionForm.component.scss',
 })
@@ -35,9 +36,9 @@ export class QuestionFormComponent {
 
   @Output() newItemEvent = new EventEmitter<QuestionInterface>();
 
-  editedQuestion = { ...this.question, answers: this.answers };
-
   fb = inject(FormBuilder);
+
+  editedQuestion = { ...this.question, answers: this.answers };
 
   questionForm = this.fb.group({
     text: [this.editedQuestion.text, [Validators.required]],
@@ -50,10 +51,6 @@ export class QuestionFormComponent {
       text: [this.editedQuestion.text, [Validators.required]],
       typeControl: new FormControl(this.question.type, Validators.required),
     });
-  }
-
-  getTextFormControl(): FormControl {
-    return this.questionForm.get('text') as FormControl;
   }
 
   onAddAnswer(newAnswer: AnswerInterface) {

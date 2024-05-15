@@ -1,3 +1,7 @@
+import {
+  ButtonSubmitComponent,
+  CheckboxComponent,
+} from '@angular-monorepo/inputs';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -6,35 +10,44 @@ import { AnswerInterface } from 'libs/questionCards/src/lib/models/question.mode
 @Component({
   selector: 'lib-many-answers-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    CheckboxComponent,
+    ButtonSubmitComponent,
+  ],
   templateUrl: './manyAnswersForm.component.html',
-  styleUrl: './manyAnswersForm.component.scss'
+  styleUrl: './manyAnswersForm.component.scss',
 })
 export class ManyAnswersFormComponent {
-  @Input() answers : AnswerInterface[] = []
-  
-  @Output() manyAnswersEvent = new EventEmitter<{id:string,correct:boolean}[]>();
+  @Input() answers: AnswerInterface[] = [];
+
+  @Output() manyAnswersEvent = new EventEmitter<
+    { id: string; correct: boolean }[]
+  >();
 
   fb = inject(FormBuilder);
 
-  manyAnswers = {}
+  manyAnswers = {};
 
-  manyAnswersForm = this.fb.group({})
+  manyAnswersForm = this.fb.group({});
 
-  ngOnInit(){
-    this.answers.forEach(q=>{
-      this.manyAnswersForm.addControl(q.id,this.fb.control(false))
-    })
+  ngOnInit() {
+    this.answers.forEach((q) => {
+      this.manyAnswersForm.addControl(q.id, this.fb.control(false));
+    });
   }
 
-  handleSubmit(){
-    const array  = Object.entries(this.manyAnswersForm.getRawValue()) 
-    const objectsArray : {id:string, correct:boolean}[]  = array.map(([id,correct])=>{
-      return{
-        id,
-        correct: !!correct
+  handleSubmit() {
+    const array = Object.entries(this.manyAnswersForm.getRawValue());
+    const objectsArray: { id: string; correct: boolean }[] = array.map(
+      ([id, correct]) => {
+        return {
+          id,
+          correct: !!correct,
+        };
       }
-    })
-    this.manyAnswersEvent.emit(objectsArray)
+    );
+    this.manyAnswersEvent.emit(objectsArray);
   }
 }

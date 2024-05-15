@@ -11,14 +11,11 @@
         display: flex;
         flex-direction: column;
         align-items: end;
-        
-        
-
     }
     .answered-container{
         width: 50%;
         min-height: 100vh;
-        height: fit-content;
+        height:auto;
         padding-left: 20px;
         display: flex;
         flex-direction: column;

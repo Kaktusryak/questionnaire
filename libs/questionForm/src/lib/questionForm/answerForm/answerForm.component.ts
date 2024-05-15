@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AnswerInterface } from '../../../../../questionCards/src/lib/models/question.model';
+import { ButtonBackComponent, ButtonSubmitComponent, CheckboxComponent, TextInputComponent } from '@angular-monorepo/inputs';
 
 @Component({
   selector: 'lib-answer-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TextInputComponent, CheckboxComponent, ButtonSubmitComponent, ButtonBackComponent],
   templateUrl: './answerForm.component.html',
   styleUrl: './answerForm.component.scss',
 })

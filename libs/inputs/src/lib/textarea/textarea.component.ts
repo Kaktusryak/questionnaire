@@ -9,16 +9,20 @@ import {
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'text-input',
+  selector: 'text-area',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './text-input.component.html',
-  styleUrl: './text-input.component.scss'
+  templateUrl: './textarea.component.html',
+  styleUrl: './textarea.component.scss'
 })
-export class TextInputComponent {
+export class TextareaComponent {
   @Input () controlName! : string
   @Input() placeholder : string = ''
   @Input() groupName! : FormGroup
   @Input() id : string = ''
+
+  onChange(){
+    console.log(this.placeholder)
+  }
 
 }

@@ -1,9 +1,11 @@
 <form action="" [formGroup]="openAnswerForm">
     <div class="textarea-div">
-        <textarea formControlName="answer"></textarea>
+        <!-- <textarea formControlName="answer"></textarea> -->
+        <text-area [controlName]="'answer'" [groupName]="openAnswerForm" [placeholder]="'Your answer'"></text-area>
+        
     </div>
-    
     <div class="button-div">
-        <button (click)="handleSubmit()" class="submit-button">Submit</button>
+        <!-- <button (click)="handleSubmit()" class="submit-button">Submit</button> -->
+        <button-submit (click)="handleSubmit()" [text]="'Submit'"></button-submit>
     </div>
 </form>
