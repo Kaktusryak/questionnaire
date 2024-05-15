@@ -1,4 +1,5 @@
 <div class="container">
+    <p class="card-header">{{question.type| uppercase}} answer(s)</p>
     <div class="text">{{question.text}}</div>
     <div *ngIf="question.type==='one'" class="one-form-container">
         <lib-one-answer-form (oneAnswerEvent)="handleOneAnswer($event)" [answers]="question.answers"></lib-one-answer-form>
