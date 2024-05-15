@@ -2,7 +2,7 @@
     <div *ngFor="let a of answers">
         <!-- <input type="checkbox" name="manyAnswers" [formControlName]="a.id" [value]="a.id" [id]="a.id" /><label
             [htmlFor]="a.id">{{a.text}}</label> -->
-        <checkbox [controlName]="a.id" [groupName]="manyAnswersForm" [id]="a.id" [htmlFor]="a.id" [text]="a.text" [value]="a.id"></checkbox>
+        <checkbox [controlName]="a.id" [groupName]="manyAnswersForm" [id]="a.id" [htmlFor]="a.id" [name]="a.id" [text]="a.text" [value]="a.id"></checkbox>
     </div>
     <div class="button-div">
         <!-- <button (click)="handleSubmit()" class="submit-button">Submit</button> -->

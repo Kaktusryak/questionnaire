@@ -101,11 +101,12 @@ export const questionsReducer = createReducer(
             return question;
           }
         }
+        return {
+          ...question,
+          answered: true,
+        };
       }
-      return {
-        ...question,
-        answered: true,
-      };
+      return question
     });
     return {
       ...state,
