@@ -9,12 +9,13 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { login } from '../../store/user.actions';
-
+import { TextInputComponent } from '@angular-monorepo/inputs';
+import { ButtonSubmitComponent } from '@angular-monorepo/inputs';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,HttpClientModule,CommonModule],
+  imports: [ReactiveFormsModule,HttpClientModule,CommonModule, TextInputComponent, ButtonSubmitComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

@@ -20,5 +20,6 @@ export class TextInputComponent {
   @Input() placeholder : string = ''
   @Input() groupName! : FormGroup
   @Input() id : string = ''
+  @Input() type : string = 'text'
 
 }

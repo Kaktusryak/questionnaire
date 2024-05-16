@@ -6,13 +6,16 @@
             <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" formControlName="email">
+                    <!-- <input type="email" class="form-control" id="email" formControlName="email"> -->
+                    <text-input [controlName]="'email'" [groupName]="loginForm" [id]="'email'" [type]="'email'" ></text-input>
                 </div>
                 <div class="mb-3">
                     <label for="pass" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="pass" formControlName="password">
+                    <text-input [controlName]="'password'" [groupName]="loginForm" [id]="'pass'" [type]="'password'" ></text-input>
+                    <!-- <input type="password" class="form-control" id="pass" formControlName="password"> -->
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <!-- <button type="submit" class="btn btn-primary">Login</button> -->
+                <button-submit [text]="'Login'"></button-submit>
             </form>
         </div>
     </div>
