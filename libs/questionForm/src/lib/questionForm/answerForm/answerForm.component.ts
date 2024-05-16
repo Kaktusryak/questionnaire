@@ -2,12 +2,24 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AnswerInterface } from '../../../../../questionCards/src/lib/models/question.model';
-import { ButtonBackComponent, ButtonSubmitComponent, CheckboxComponent, TextInputComponent } from '@angular-monorepo/inputs';
+import {
+  ButtonBackComponent,
+  ButtonSubmitComponent,
+  CheckboxComponent,
+  TextInputComponent,
+} from '@angular-monorepo/inputs';
 
 @Component({
   selector: 'lib-answer-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TextInputComponent, CheckboxComponent, ButtonSubmitComponent, ButtonBackComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TextInputComponent,
+    CheckboxComponent,
+    ButtonSubmitComponent,
+    ButtonBackComponent,
+  ],
   templateUrl: './answerForm.component.html',
   styleUrl: './answerForm.component.scss',
 })
@@ -47,7 +59,7 @@ export class AnswerFormComponent {
           text: this.answerForm.getRawValue().text || '',
           correct: this.answerForm.getRawValue().correct || false,
         };
-        this.newItemEvent.emit(answer); 
+        this.newItemEvent.emit(answer);
       } else {
         const answer: AnswerInterface = {
           id: this.id,
@@ -55,13 +67,26 @@ export class AnswerFormComponent {
           correct: this.answerForm.getRawValue().correct || false,
         };
         this.newItemEvent.emit(answer);
+        console.log(answer);
       }
-    }else{
-      alert('Invalid answer')
+    } else {
+      alert('Invalid answer');
     }
   }
-  
-  onDeleteAnswer(){
-    this.deleteAnswerEvent.emit(this.id)
+
+  onChangeAnswer() {
+    if (!this.answerForm.invalid && this.isChange) {
+      const answer: AnswerInterface = {
+        id: this.id,
+        text: this.answerForm.getRawValue().text || '',
+        correct: this.answerForm.getRawValue().correct || false,
+      };
+      this.newItemEvent.emit(answer);
+      console.log(answer);
+    }
+  }
+
+  onDeleteAnswer() {
+    this.deleteAnswerEvent.emit(this.id);
   }
 }

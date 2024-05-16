@@ -33,6 +33,7 @@ export class QuestionFormComponent {
   };
   @Input() answers: AnswerInterface[] = [];
   @Input() isEdit: boolean = false;
+  @Input() submitButtonText : string = 'Submit'
 
   @Output() newItemEvent = new EventEmitter<QuestionInterface>();
 
@@ -69,6 +70,7 @@ export class QuestionFormComponent {
   }
 
   onChangeAnswer(newAnswer: AnswerInterface) {
+    console.log(newAnswer)
     this.editedQuestion.answers = this.editedQuestion.answers.map((ans) => {
       if (ans.id == newAnswer.id) {
         return newAnswer;

@@ -3,10 +3,11 @@ import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { loadQuestions} from './store/questions/questions.actions';
 import { LocalStorageService } from '@angular-monorepo/localStorage'
+import { ButtonSubmitComponent } from '@angular-monorepo/inputs';
 
 @Component({
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, ButtonSubmitComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

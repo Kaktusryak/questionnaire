@@ -11,4 +11,5 @@ export class ButtonBackComponent {
   @Input() text : string = 'Back'
   @Input() width : string = '6rem'
   @Input() height : string = '2rem'
+  @Input() type : string = 'button'
 }

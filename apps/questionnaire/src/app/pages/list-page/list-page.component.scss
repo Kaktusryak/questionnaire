@@ -1,12 +1,11 @@
 .container{
     width: 100%;
-    min-height: 100vh;
-    
+    min-height: calc(100vh - 5rem);
     display: flex;
     .to-answer-container{
         width: 50%;
-        min-height: 100vh;
-        height: fit-content;
+        min-height: calc(100vh - 5rem);
+        height: auto;
         padding-right: 20px;
         display: flex;
         flex-direction: column;
@@ -14,7 +13,7 @@
     }
     .answered-container{
         width: 50%;
-        min-height: 100vh;
+        min-height: calc(100vh - 5rem);
         height:auto;
         padding-left: 20px;
         display: flex;

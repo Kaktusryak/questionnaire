@@ -1,4 +1,5 @@
 <div class="form-container">
+    <p>All changes are unsaved untill you submit the form</p>
     <form action="" [formGroup]="questionForm" (ngSubmit)="onAddQuestion()">
         <text-input [id]="'text'" [controlName]="'text'" [placeholder]="'Question text'"
             [groupName]="questionForm"></text-input>
@@ -27,11 +28,12 @@
 
         <div class="form-button-div">
             <!-- <button type="submit">Submit</button> -->
-            <button-submit [height]="'3rem'" [width]="'10rem'" [text]="'Create'"></button-submit>
+            <button-submit [height]="'3rem'" [width]="'10rem'" [text]="submitButtonText"></button-submit>
+            
         </div>
     </form>
     <lib-answer-form (newItemEvent)="onAddAnswer($event)"></lib-answer-form>
-    <hr>
+    
     <lib-answer-form *ngFor="let answer of editedQuestion.answers" (newItemEvent)="onChangeAnswer($event)"
         (deleteAnswerEvent)="onDeleteAnswer($event)" [text]="answer.text" [id]="answer.id" [correct]="answer.correct"
         [isChange]="true"> </lib-answer-form>
