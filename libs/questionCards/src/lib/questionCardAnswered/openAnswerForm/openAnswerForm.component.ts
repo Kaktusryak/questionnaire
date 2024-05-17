@@ -1,7 +1,8 @@
 import { ButtonBackComponent } from '@angular-monorepo/inputs';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ReactiveFormsModule} from '@angular/forms';
+
 import { AnswerInterface } from 'libs/questionCards/src/lib/models/question.model'; 
 
 @Component({

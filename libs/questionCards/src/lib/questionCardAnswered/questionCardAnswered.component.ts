@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 import { QuestionInterface } from 'libs/questionCards/src/lib/models/question.model';
 import { OneAnswerFormComponent } from './oneAnswerForm/oneAnswerForm.component';
 import { ManyAnswersFormComponent } from './manyAnswersForm/manyAnswersForm.component';
 import { OpenAnswerFormComponent } from './openAnswerForm/openAnswerForm.component';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'lib-question-card-answered',

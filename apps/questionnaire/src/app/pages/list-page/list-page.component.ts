@@ -1,21 +1,22 @@
 import { Component, inject } from '@angular/core';
-import {
-  QuestionCardAnsweredComponent,
-  QuestionCardToAnswerComponent,
-} from '@angular-monorepo/questionCard';
 import { Store, select } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+
 import {
   selectAnsweredQuestions,
   selectToAnswerQuestions,
 } from '../../store/questions/questions.selectors';
-import { CommonModule } from '@angular/common';
 import {
   checkQuestionManyAnswers,
   checkQuestionOneAnswer,
   checkQuestionOpenAnswer,
   rollBackQuestion,
 } from '../../store/questions/questions.actions';
+import {
+  QuestionCardAnsweredComponent,
+  QuestionCardToAnswerComponent,
+} from '@angular-monorepo/questionCard';
 import { QuestionInterface } from '@angular-monorepo/questionCard';
 
 @Component({
@@ -35,26 +36,26 @@ export class ListPageComponent {
   questionsToAnswer: QuestionInterface[] = [];
   questionsAnswered: QuestionInterface[] = [];
 
-  questionsToAnswerSubscription$?: Subscription;
-  questionsAnsweredSubscription$?: Subscription;
+  questionsSubscription?: Subscription;
 
   ngOnInit() {
-    this.questionsToAnswerSubscription$ = this.store
+    this.questionsSubscription = this.store
       .pipe(select(selectToAnswerQuestions))
       .subscribe((questions) => {
         this.questionsToAnswer = questions;
       });
 
-    this.questionsAnsweredSubscription$ = this.store
-      .pipe(select(selectAnsweredQuestions))
-      .subscribe((questions) => {
-        this.questionsAnswered = questions;
-      });
+    this.questionsSubscription.add(
+      this.store
+        .pipe(select(selectAnsweredQuestions))
+        .subscribe((questions) => {
+          this.questionsAnswered = questions;
+        })
+    );
   }
 
   ngOnDestroy() {
-    this.questionsToAnswerSubscription$?.unsubscribe();
-    this.questionsAnsweredSubscription$?.unsubscribe();
+    this.questionsSubscription?.unsubscribe();
   }
 
   handleCheckOneAnswer(questionAnswerPair: any) {
@@ -87,6 +88,4 @@ export class ListPageComponent {
   handleRollBack(questionId: string) {
     this.store.dispatch(rollBackQuestion({ questionId: questionId }));
   }
-
-  
 }

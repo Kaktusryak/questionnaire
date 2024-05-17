@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { tap } from 'rxjs/operators';
-import * as QuestionActions from './questions.actions'; // Import your action creators
-import { LocalStorageService } from '@angular-monorepo/localStorage';
 import { Store, select } from '@ngrx/store';
+import { Actions, ofType, createEffect } from '@ngrx/effects';
+import { switchMap, tap } from 'rxjs/operators';
+
+import * as QuestionActions from './questions.actions'; 
 import { selectAllQuestions } from './questions.selectors';
+import { LocalStorageService } from '@angular-monorepo/localStorage';
 import { QuestionInterface } from '@angular-monorepo/questionCard';
 
 @Injectable()
@@ -27,15 +28,11 @@ export class QuestionEffects {
           QuestionActions.checkQuestionOneAnswer,
           QuestionActions.rollBackQuestion
         ),
-        tap(() => {
-          let data: QuestionInterface[] = [];
-          const currentState = this.store
-            .pipe(select(selectAllQuestions))
-            .subscribe((questions) => {
-              data = questions;
-            });
-          this.localStorageService.pushArrayToStorage(data, 'questions');
-          currentState.unsubscribe()
+        switchMap(() =>
+          this.store.pipe(select(selectAllQuestions))
+        ),
+        tap((questions: QuestionInterface[]) => {
+          this.localStorageService.pushArrayToStorage(questions, 'questions');
         })
       ),
     { dispatch: false }

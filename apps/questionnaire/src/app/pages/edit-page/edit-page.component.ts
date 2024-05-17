@@ -1,11 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Store, select } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+
+import { selectQuestionById } from '../../store/questions/questions.selectors';
 import { editQuestion } from '../../store/questions/questions.actions';
 import { QuestionFormComponent } from '@angular-monorepo/questionForm';
 import { QuestionInterface } from '@angular-monorepo/questionCard';
-import { selectQuestionById } from '../../store/questions/questions.selectors';
-import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-edit-page',
@@ -19,10 +21,9 @@ export class EditPageComponent {
   router = inject(Router);
   route = inject(ActivatedRoute);
 
-  questions: QuestionInterface[] = [];
   question!: QuestionInterface;
 
-  subscription$!: Subscription;
+  subscription!: Subscription;
 
   alertQuestion: QuestionInterface = {
     id: '',
@@ -35,7 +36,7 @@ export class EditPageComponent {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id') || '';
-    this.subscription$ = this.store
+    this.subscription = this.store
       .pipe(select(selectQuestionById(id)))
       .subscribe((question) => {
         this.question = question || this.alertQuestion;
@@ -43,7 +44,7 @@ export class EditPageComponent {
   }
 
   ngOnDestroy() {
-    this.subscription$.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   onChangeQuestion(question: QuestionInterface) {

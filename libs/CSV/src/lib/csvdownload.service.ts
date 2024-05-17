@@ -31,12 +31,11 @@ export class CSVDownloadService {
 
   downloadFile(data:any, filename='data') {
     let csvData = this.convertToCSV(data, ['name','lastName', 'dateOfBirth', 'education', 'role', 'position']);
-    // console.log(csvData)
     let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
     let dwldLink = document.createElement("a");
     let url = URL.createObjectURL(blob);
     let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
-    if (isSafariBrowser) {  //if Safari open in new window to save file with random filename.
+    if (isSafariBrowser) { 
         dwldLink.setAttribute("target", "_blank");
     }
     dwldLink.setAttribute("href", url);

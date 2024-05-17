@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { AnswerInterface } from '../../../../../questionCards/src/lib/models/question.model';
 import {
   ButtonBackComponent,
@@ -8,6 +9,7 @@ import {
   CheckboxComponent,
   TextInputComponent,
 } from '@angular-monorepo/inputs';
+
 
 @Component({
   selector: 'lib-answer-form',
@@ -67,7 +69,6 @@ export class AnswerFormComponent {
           correct: this.answerForm.getRawValue().correct || false,
         };
         this.newItemEvent.emit(answer);
-        console.log(answer);
       }
     } else {
       alert('Invalid answer');
@@ -82,7 +83,6 @@ export class AnswerFormComponent {
         correct: this.answerForm.getRawValue().correct || false,
       };
       this.newItemEvent.emit(answer);
-      console.log(answer);
     }
   }
 

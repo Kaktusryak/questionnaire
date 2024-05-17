@@ -1,11 +1,5 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,13 +7,12 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './text-input.component.html',
-  styleUrl: './text-input.component.scss'
+  styleUrl: './text-input.component.scss',
 })
 export class TextInputComponent {
-  @Input () controlName! : string
-  @Input() placeholder : string = ''
-  @Input() groupName! : FormGroup
-  @Input() id : string = ''
-  @Input() type : string = 'text'
-
+  @Input() controlName!: string;
+  @Input() placeholder: string = '';
+  @Input() groupName!: FormGroup;
+  @Input() id: string = '';
+  @Input() type: string = 'text';
 }

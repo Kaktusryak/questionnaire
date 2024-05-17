@@ -1,25 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import {MatRadioModule} from '@angular/material/radio';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'radio-button',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, MatRadioModule],
   templateUrl: './radio-button.component.html',
-  styleUrl: './radio-button.component.scss'
+  styleUrl: './radio-button.component.scss',
 })
 export class RadioButtonComponent {
-  @Input() value : string = ''
-  @Input() text : string = this.value
-
-
+  @Input() value: string = '';
+  @Input() text: string = this.value;
 }
