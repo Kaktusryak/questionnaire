@@ -1,15 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { QuestionCardComponent } from '@angular-monorepo/questionCard';
-import { selectAllQuestions } from '../../store/questions/questions.selectors';
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+
+import { selectAllQuestions } from '../../store/questions/questions.selectors';
 import { deleteQuestion } from '../../store/questions/questions.actions';
 import { QuestionInterface } from '@angular-monorepo/questionCard';
-
+import { QuestionCardComponent } from '@angular-monorepo/questionCard';
 import { DateToYMD } from '@angular-monorepo/pipes';
-
 import { LocalStorageService } from '@angular-monorepo/localStorage';
 
 @Component({
@@ -22,15 +21,13 @@ import { LocalStorageService } from '@angular-monorepo/localStorage';
 export class ManagementPageComponent {
   store = inject(Store);
   router = inject(Router);
-  LSS = inject(LocalStorageService);
 
-  subscription$?: Subscription;
-  subscription2$?: Subscription;
+  subscription?: Subscription;
 
   questions: QuestionInterface[] = [];
 
   ngOnInit() {
-    this.subscription$ = this.store
+    this.subscription = this.store
       .pipe(select(selectAllQuestions))
       .subscribe((questions) => {
         this.questions = questions;
@@ -38,7 +35,7 @@ export class ManagementPageComponent {
   }
 
   ngOnDestroy() {
-    this.subscription$?.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
   navigateToEditPage(questionId: string) {

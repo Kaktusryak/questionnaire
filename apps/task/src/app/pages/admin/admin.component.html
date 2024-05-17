@@ -1,0 +1,16 @@
+<section class="container py-3">
+    <div class="row justify-content-center">
+        <div class="btn-group col-md-6">
+            <button (click)="handleDownloadAll()" class="btn btn-warning">Download csv file</button>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <ul class="list-group">
+                <app-user *ngFor="let user of users; index as i; first as isFirst" [id]="i" [data]="user" [name]="user.name"
+                    [lastName]="user.lastName" [dateOfBirth]="user.dateOfBirth" [education]="user.education"
+                    [role]="user.role" [position]="user.position"></app-user>
+            </ul>
+        </div>
+    </div>
+</section>

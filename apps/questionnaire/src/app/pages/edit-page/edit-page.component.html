@@ -1,5 +1,6 @@
 <div class="container">
     <h2>Edit your question (id: {{question.id}}):</h2>
-    <lib-question-form [question]="question || alertQuestion " [answers]="question.answers || alertQuestion.answers"
+    <lib-question-form [submitButtonText]="'Save'" [isEdit]="true" [question]="question || alertQuestion "
+        [answers]="question.answers || alertQuestion.answers"
         (newItemEvent)="onChangeQuestion($event)"></lib-question-form>
 </div>

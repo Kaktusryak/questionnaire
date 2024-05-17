@@ -1,26 +1,40 @@
 <div class="form-container">
+    <p>All changes are unsaved untill you submit the form</p>
     <form action="" [formGroup]="questionForm" (ngSubmit)="onAddQuestion()">
-        <input type="text" class="form-control" id="text" formControlName="text" placeholder="Question text" />
-        <div class="form-radios">
-            <div>
+        <text-input [id]="'text'" [controlName]="'text'" [placeholder]="'Question text'"
+            [groupName]="questionForm"></text-input>
+        <!-- <input type="text" class="form-control" id="text" formControlName="text" placeholder="Question text" /> -->
+
+
+
+
+        <mat-radio-group class="form-radios" formControlName="typeControl">
+            <radio-button name="typeControl" [id]="'one'" [value]="'one'" [text]="'One'"></radio-button>
+            <radio-button name="typeControl" [id]="'many'" [value]="'many'" [text]="'Many'"></radio-button>
+            <radio-button name="typeControl" [id]="'open'" [value]="'open'" [text]="'Open'"></radio-button>
+        </mat-radio-group>
+        <!-- <div>
                 <input  type="radio" name="typeControl" formControlName="typeControl" value="one" id="one"><label
                 for="one">One</label>
-            </div>
-            <div>
-                <input  type="radio" name="typeControl" formControlName="typeControl" value="many" id="many"><label
-                for="one">Many</label>
+            </div> -->
+        <!-- <div>
+                <input type="radio" name="typeControl" formControlName="typeControl" value="many" id="many"><label
+                    for="many">Many</label>
             </div>
             <div>
                 <input type="radio" name="typeControl" formControlName="typeControl" value="open" id="open"><label
-                for="one">Open</label>
-            </div>
-        </div>
+                    for="open">Open</label>
+            </div> -->
+
         <div class="form-button-div">
-            <button type="submit">Submit</button>
-        </div>   
+            <!-- <button type="submit">Submit</button> -->
+            <button-submit [height]="'3rem'" [width]="'10rem'" [text]="submitButtonText"></button-submit>
+            
+        </div>
     </form>
     <lib-answer-form (newItemEvent)="onAddAnswer($event)"></lib-answer-form>
-    <hr>
-    <lib-answer-form *ngFor="let answer of editedQuestion.answers" (newItemEvent)="onChangeAnswer($event)" (deleteAnswerEvent)="onDeleteAnswer($event)" [text]="answer.text"
-        [id]="answer.id" [correct]="answer.correct" [isChange]="true">  </lib-answer-form>
+    
+    <lib-answer-form *ngFor="let answer of editedQuestion.answers" (newItemEvent)="onChangeAnswer($event)"
+        (deleteAnswerEvent)="onDeleteAnswer($event)" [text]="answer.text" [id]="answer.id" [correct]="answer.correct"
+        [isChange]="true"> </lib-answer-form>
 </div>

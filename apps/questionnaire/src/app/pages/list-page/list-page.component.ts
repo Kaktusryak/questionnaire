@@ -1,21 +1,22 @@
 import { Component, inject } from '@angular/core';
-import {
-  QuestionCardAnsweredComponent,
-  QuestionCardToAnswerComponent,
-} from '@angular-monorepo/questionCard';
 import { Store, select } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+
 import {
   selectAnsweredQuestions,
   selectToAnswerQuestions,
 } from '../../store/questions/questions.selectors';
-import { CommonModule } from '@angular/common';
 import {
   checkQuestionManyAnswers,
   checkQuestionOneAnswer,
   checkQuestionOpenAnswer,
   rollBackQuestion,
 } from '../../store/questions/questions.actions';
+import {
+  QuestionCardAnsweredComponent,
+  QuestionCardToAnswerComponent,
+} from '@angular-monorepo/questionCard';
 import { QuestionInterface } from '@angular-monorepo/questionCard';
 
 @Component({
@@ -35,35 +36,29 @@ export class ListPageComponent {
   questionsToAnswer: QuestionInterface[] = [];
   questionsAnswered: QuestionInterface[] = [];
 
-  questionsToAnswerSubscription$?: Subscription;
-  questionsAnsweredSubscription$?: Subscription;
+  questionsSubscription?: Subscription;
 
   ngOnInit() {
-    this.questionsToAnswerSubscription$ = this.store
+    this.questionsSubscription = this.store
       .pipe(select(selectToAnswerQuestions))
       .subscribe((questions) => {
-        console.log('selector to answer'); //
         this.questionsToAnswer = questions;
-        console.log(questions); //
       });
 
-    this.questionsAnsweredSubscription$ = this.store
-      .pipe(select(selectAnsweredQuestions))
-      .subscribe((questions) => {
-        console.log('selector answered'); //
-        this.questionsAnswered = questions;
-        console.log(questions); //
-      });
+    this.questionsSubscription.add(
+      this.store
+        .pipe(select(selectAnsweredQuestions))
+        .subscribe((questions) => {
+          this.questionsAnswered = questions;
+        })
+    );
   }
 
   ngOnDestroy() {
-    this.questionsToAnswerSubscription$?.unsubscribe();
-    this.questionsAnsweredSubscription$?.unsubscribe();
+    this.questionsSubscription?.unsubscribe();
   }
 
   handleCheckOneAnswer(questionAnswerPair: any) {
-    console.log('we are in list '); //
-    console.log(questionAnswerPair); //
     this.store.dispatch(
       checkQuestionOneAnswer({
         questionId: questionAnswerPair.questionId,
@@ -73,8 +68,6 @@ export class ListPageComponent {
   }
 
   handleCheckOpenAnswer(questionAnswerPair: any) {
-    console.log('we are in list '); //
-    console.log(questionAnswerPair); //
     this.store.dispatch(
       checkQuestionOpenAnswer({
         questionId: questionAnswerPair.questionId,
@@ -84,8 +77,6 @@ export class ListPageComponent {
   }
 
   handleCheckManyAnswers(questionAnswersPair: any) {
-    console.log('we are in list '); //
-    console.log(questionAnswersPair); //
     this.store.dispatch(
       checkQuestionManyAnswers({
         questionId: questionAnswersPair.questionId,
@@ -95,9 +86,6 @@ export class ListPageComponent {
   }
 
   handleRollBack(questionId: string) {
-    console.log('works ' + questionId); //
     this.store.dispatch(rollBackQuestion({ questionId: questionId }));
   }
-
-  
 }

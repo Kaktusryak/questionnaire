@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
+
 import { createQuestion } from '../../store/questions/questions.actions';
 import { QuestionFormComponent } from '@angular-monorepo/questionForm';
-import { Router } from '@angular/router';
 import { QuestionInterface } from '@angular-monorepo/questionCard';
 
 @Component({
@@ -17,8 +18,6 @@ export class CreatePageComponent {
   router = inject(Router);
 
   onAddQuestion(question: QuestionInterface) {
-    console.log('Home:'); //
-    console.log(question); //
     this.store.dispatch(createQuestion({ question: question }));
     this.router.navigateByUrl('');
   }

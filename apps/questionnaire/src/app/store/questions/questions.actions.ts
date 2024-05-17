@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+
 import { QuestionInterface } from '@angular-monorepo/questionCard';
 
 export const createQuestion = createAction(
@@ -35,7 +36,6 @@ export const checkQuestionManyAnswers = createAction(
 export const recreateQuestionsFromSource = createAction(
   '[Question] Recreate'
 );
-
 export const loadQuestions = createAction(
   '[Question] Load',
   props<{ questions: QuestionInterface[] }>()

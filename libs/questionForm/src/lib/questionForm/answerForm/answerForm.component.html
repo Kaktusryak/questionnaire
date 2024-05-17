@@ -1,7 +1,13 @@
+<hr *ngIf="isChange">
+<form class="answer-form" action="" [formGroup]="answerForm" (ngSubmit)="onAddAnswer()" (change)="onChangeAnswer()">
 
-<form class="answer-form" action="" [formGroup]="answerForm" (ngSubmit)="onAddAnswer()" >
-    <input  type="text" class="form-control"  id="text" formControlName="text"   />
-    <input  type="checkbox" class="form-control" id="correct" formControlName="correct"/>
-    <button type="submit"> {{buttonText}}</button>
-    <button *ngIf="isChange" class="delete" type="button" (click)="onDeleteAnswer()">Delete</button>
+    <!-- <input  type="text" class="form-control"  id="text" formControlName="text"   /> -->
+    <text-input [id]="'text'" [controlName]="'text'" [placeholder]="'Answer text'" [groupName]="answerForm"></text-input>
+    <checkbox [groupName]="answerForm" [id]="'correct'" [controlName]="'correct'"></checkbox>
+    <!-- <input  type="checkbox" class="form-control" id="correct" formControlName="correct"/> -->
+    <button-submit *ngIf="!isChange" [height]="'3rem'" [text]="buttonText"></button-submit>
+    <!-- <button type="submit"> {{buttonText}}</button> -->
+    <button-back *ngIf="isChange" [height]="'3rem'" [text]="'Delete'" (click)="onDeleteAnswer()"></button-back>
+    <!-- <button *ngIf="isChange" class="delete" type="button" (click)="onDeleteAnswer()">Delete</button> -->
+
 </form>

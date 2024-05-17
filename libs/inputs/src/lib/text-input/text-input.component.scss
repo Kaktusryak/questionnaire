@@ -1,0 +1,12 @@
+.textInput {
+    height: 35px;
+    width: 20rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    font-size: larger;
+    @media (max-width:600px) {
+        width: 80vw;
+    }
+
+}

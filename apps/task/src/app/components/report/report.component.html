@@ -1,0 +1,18 @@
+<li (click)="handleClick()" class="list-group-item my-2 bg-light h-auto" style="cursor: pointer;">
+    <div class="row justify-content-center align-middle">
+        <div class="col-md-8 ">
+            <div class="row">
+                <p>Name: {{name}}</p>
+            </div>
+            <div class="row">
+                <p>Active: {{active}}</p>
+            </div>
+            <div class="row">
+                <p>Users resolved: {{users_resolved}}</p>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end">
+            <img src={{image_url}} class="img-thumbnail rounded" style="height: 120px;" alt="">
+        </div>
+    </div>
+</li>

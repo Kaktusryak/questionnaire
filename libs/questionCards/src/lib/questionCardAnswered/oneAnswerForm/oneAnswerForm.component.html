@@ -4,7 +4,7 @@
             [id]="a.id" /><label [htmlFor]="a.id" [ngClass]="{'correct':a.correct===true}">{{a.text}}</label>
     </div>
     <div class="button-div">
-        <button (click)="handleSubmit()" class="submit-button">Roll back</button>
+        <!-- <button (click)="handleSubmit()" class="submit-button">Roll back</button> -->
+        <button-back (click)="handleSubmit()" [text]="'Roll back'"></button-back>
     </div>
-
 </form>

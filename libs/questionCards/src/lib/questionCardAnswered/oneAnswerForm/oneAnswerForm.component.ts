@@ -1,12 +1,14 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AnswerInterface } from 'libs/questionCards/src/lib/models/question.model'; 
 import { CommonModule } from '@angular/common';
+
+import { AnswerInterface } from 'libs/questionCards/src/lib/models/question.model'; 
+import { ButtonBackComponent } from '@angular-monorepo/inputs';
 
 @Component({
   selector: 'lib-one-answer-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ButtonBackComponent],
   templateUrl: './oneAnswerForm.component.html',
   styleUrl: './oneAnswerForm.component.scss'
 })
@@ -25,13 +27,9 @@ export class OneAnswerFormComponent {
     this.oneAnswerForm = this.fb.group({
       oneAnswer: new FormControl({value:'', disabled:true}, Validators.required)
     })
-    console.log('inside question')//
-    console.log(this.answers)//
-    
   }
 
   handleSubmit(){
-    console.log('ONE')//
     this.rollBackEvent.emit();
   }
 }

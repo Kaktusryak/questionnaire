@@ -1,0 +1,5 @@
+<div [formGroup]="groupName" class="container">
+    <input class="checkbox" type="checkbox" [name]="name" [formControlName]="controlName" [value]="value" [id]="id" /><label *ngIf="text!==''" class="checkboxLabel"
+            [htmlFor]="htmlFor">{{text}}</label>
+</div>
+

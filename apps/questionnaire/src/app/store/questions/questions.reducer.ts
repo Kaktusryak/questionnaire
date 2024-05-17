@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+
 import { appState } from '../app.state';
 import {
   checkQuestionManyAnswers,
@@ -15,7 +16,6 @@ import {
 export const questionsReducer = createReducer(
   appState,
   on(createQuestion, (state, { question }) => {
-    console.log('creating'); //
     return {
       ...state,
       questions: [...state.questions, question],
@@ -61,7 +61,6 @@ export const questionsReducer = createReducer(
       if (question.id === questionId) {
         for (let a of question.answers) {
           if (a.id === answerId && a.correct === true) {
-            console.log('checking');
             return {
               ...question,
               answered: true,
@@ -103,11 +102,12 @@ export const questionsReducer = createReducer(
             return question;
           }
         }
+        return {
+          ...question,
+          answered: true,
+        };
       }
-      return {
-        ...question,
-        answered: true,
-      };
+      return question
     });
     return {
       ...state,

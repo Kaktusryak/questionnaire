@@ -1,0 +1,21 @@
+button {
+    background-color: rgb(173, 24, 56);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: large;
+    font-weight: 800;
+    margin: 0.5rem;
+    cursor: pointer;
+    &:hover{
+        background-color: rgb(209, 48, 83);
+    }
+    &:active {
+        -webkit-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+        box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+        
+    }
+
+
+}
